@@ -1,0 +1,33 @@
+\section{The Integers and the Rationals}
+\subsection{Integers}
+The integers $\mathbb Z$ consists of all expressions $n,-n$ where $n$ is a natural number, and $0$.
+We can define $+, \times$ etc. in the obvious way.
+And it is easy and trivial to check all the necessary rules apply.
+And we define $a<b$ as $a+c=b$ for some natural number $c$.
+All previous rules appply except we need $c$ to be positive to have $a<b\implies ac<bc$.
+Also, for any $a$, $a+0=a$ and that there is a $b$ such that $a+b=0$.
+This makes the integers a group.
+\subsection{Rationals}
+We can define the rationals $\mathbb Q$ as well.
+It shall consist of all expressions $a/b$ for some integers $a,b$ with $n\neq 0$.
+And we shall have 
+$$a/b=c/d\iff ad=bc$$
+And we define 
+$$\frac{a}{b}+\frac{c}{d}=\frac{ad+bc}{bd}$$
+We have to check that this is well defined, since $\mathbb Q$ is constructed based on equivalence classes.
+For example, we cannot assign an operation sending $a/b\to a^2/b^3$ because it will be ill defined, as $1/2$ and $2/4$ go to different places.
+\begin{proposition}
+    The addition is well-defined on $\mathbb Q$.
+\end{proposition}
+\begin{proof}
+    Trivial.
+\end{proof}
+\begin{proposition}
+    We can define multiplication similarly that satisfies all usual rules and that every nonzero rational number has an inverse under multiplication.
+\end{proposition}
+\begin{proof}
+    Trivial.
+\end{proof}
+So the rationals excluding $0$ is a group.\\
+As for order, $a/b<c/d\iff ad<bc$ for $b,d>0$.
+We can also check all the rules we want

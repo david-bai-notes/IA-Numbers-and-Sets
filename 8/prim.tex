@@ -1,0 +1,83 @@
+\section{Bonus lecture: Primitive Roots}
+We work in the multiplicative group $\mathbb Z_p^\times$ or $\mathbb Z_p^\star$ consisting of $(\mathbb Z_p\setminus\{0\},\times,1)$.
+\begin{definition}
+    The order of $x\in\mathbb Z_p^\star$ is the least $n\in\mathbb N$ with $x^n\equiv 1\pmod{p}$.
+\end{definition}
+It is trivial that an order indeed exists by F$\ell$T.
+\begin{example}
+    The order of $2$ in $\mathbb Z_7^\star$ is $3$, and the order of $3$ there is $6$.
+\end{example}
+\begin{definition}
+    A $x\in \mathbb Z_p^\star$ is said to be a primitive root, or generator, if $x$ has order $p-1$.
+\end{definition}
+Indeed, if such an $x$ exists, then every element in $\mathbb Z_p^\star$ can be written in the form $x^n$ for some $n\in\mathbb N$.
+\begin{theorem}\label{primitive}
+    For any $p$, there exists a generator.
+\end{theorem}
+That is, $\mathbb Z_p^\star\cong C_{p-1}$.
+\begin{proposition}
+    If $x$ has order $n$, then if $x^d\equiv 1\pmod{p}$, then $n|d$.
+\end{proposition}
+\begin{proof}
+    Trivial by minimality of order.
+\end{proof}
+\begin{proposition}
+    Let $x$ have order $a$ and $y$ have order $b$ where $a,b$ are coprime, then $xy$ has order $ab$.
+\end{proposition}
+\begin{proof}
+    Obviously $(xy)^{ab}\equiv 1\pmod{p}$.
+    Conversely, if $(xy)^d\equiv 1\pmod{p}$, then $x^dy^d\equiv 1\pmod{p}$, so $x^{bd}\equiv 1\pmod{p}$ hence $a|bd$, but $a,b$ are coprime, so $a|d$.
+    Similarly $b|d$, thus $ab|d$ since again $a,b$ are coprime.
+\end{proof}
+Also the condition of $a,b$ being coprime is necessary.
+Indeed, by the same idea, we obtain
+\begin{proposition}
+    Let $x$ have order $a$ and $y$ have order $b$, then there is some element have order $l$, the LCM of $a,b$.
+\end{proposition}
+\begin{proof}
+    Let
+    $$a=p_1^{a_1}\cdots p_k^{a_k}q_1^{c_1}\cdots q_j^{c_j},b=p_1^{b_1}\cdots p_k^{b_k}q_1^{d_1}\cdots q_j^{d_j}$$
+    where $p_i,q_i$ are distinct primes where $a_i\ge b_i,c_i\le d_i$.
+    Then $x^{q_1^{c_1}\cdots q_j^{c_j}}$ has order $p_1^{a_1}\cdots p_k^{a_k}$, and $y^{p_1^{b_1}\cdots p_k^{b_k}}$ has order $q_1^{d_1}\cdots q_j^{d_j}$.
+    So $x^{q_1^{c_1}\cdots q_j^{c_j}}y^{p_1^{b_1}\cdots p_k^{b_k}}$ has order $p_1^{a_1}\cdots p_k^{a_k}q_1^{d_1}\cdots q_j^{d_j}=l$ by above.
+\end{proof}
+\begin{corollary}
+    If $d$ is the biggest order in $\mathbb Z_p^\star$, then any order divides $d$.
+\end{corollary}
+Note that all the above works in any finite abelian group.
+We now bring in number theory.
+\begin{proposition}
+    Let $f$ be a polynomial in $\mathbb Z_p$ or degree $k>0$, the $f$ has at most $k$ roots in $\mathbb Z_p$.
+\end{proposition}
+\begin{proof}
+    Division and induction.
+\end{proof}
+\begin{remark}
+    This is NOT true in $\mathbb Z_n$ in general since we used division (which requires it to be a field).
+    For example, $x^2\equiv 1$ has $4$ roots modulo $8$.
+\end{remark}
+\begin{proof}[Proof of Theorem \ref{primitive}]
+    Take $d$ to be the biggest order in $\mathbb Z_p^\star$.
+    We want $d=p-1$.
+    Note that for any $x\in\mathbb Z_p^\star$, $x^d\equiv 1\pmod{p}$ by the preceding corollary.
+    But the polynomial $x^d-1$ can have at most $d$ roots.
+    Then we must have $d\ge p-1$, but $d|p-1\implies d\le p-1$, hence $d=p-1$.
+\end{proof}
+There are some consequences by this theorem.
+We let $g$ be the generator hereafter.
+For example, we can prove Fermat by takeing $x\equiv g^a\pmod{p}$, then $x^{p-1}\equiv g^{a(p-1)}\equiv 1\pmod{p}$.\\
+From now on we set $p$ odd.
+So we have $\mathbb Z_p^\star$ contains exactly $(p-1)/2$ roots by again looking at the exponent.
+Also, a non-square times a non-square gives a square.
+Now we look at $-1$.
+Then we must have $g^{(p-1)/2}\equiv -1\pmod{p}$, so $-1$ is a square if and only if $(p-1)/2$ is even, which happens if and only if $p\equiv 1\pmod{4}$.\\
+For Wilson's Theorem, we can simply write $(p-1)!\equiv g^{1+2+3+\cdots +(p-1)}\equiv g^{p(p-1)/2}\equiv (-1)^p\equiv -1\pmod{p}$.\\
+For $p=3k+1$, the cubes are exactly $g^3,g^6,\ldots,g^{3k}$, so there are exactly $k=(p-1)/3$ cubes.
+Otherwise, everything is a cube (as shown in example sheets).
+\begin{remark}
+    The proof does not tell us how we can find the generator as it only shows existence.
+    Even today, it is not well-understood which element would be a generator.
+    For example, when is $2$ a generator?
+    It is true for $\mathbb Z_5$ but not $\mathbb Z_7$.
+    Nobody knows for which primes $2$ is a primitive roots, it is not even known if $2$ is a primitive root modulo infinitely many primes $p$ (Artin's Conjecture).
+\end{remark}

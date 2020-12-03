@@ -1,0 +1,172 @@
+\section{Countability}
+We want to find a way to describe the sizes of infinite sets.
+For example, $\mathbb N$ ``looks smaller'' than $\mathbb Z,\mathbb Q, \mathbb R$, but is that the case?
+\begin{definition}
+    A set $A$ is called countable if either $A$ is finite or there exists a bijection $A\to\mathbb N$.
+\end{definition}
+Equivalently, $A$ is countable iff we can list the element of $A$ as $\{a_1,a_2,a_3,\ldots\}$ (which might terminate if $A$ is finite).
+\begin{example}
+    1. Every finite set is countable.\\
+    2. $\mathbb N$ is countable.\\
+    3. $\mathbb Z$ is countable.
+    Consider the listing $\{0,1,-1,2,-2,3,-3,\ldots\}$.
+    Or, written in formula
+    $$a_n=
+    \begin{cases}
+        n/2\text{, if $n$ is even}\\
+        (1-n)/2\text{, if $n$ is odd}
+    \end{cases}$$
+\end{example}
+A natural question to ask, following the last example, is whether all sets are countable.
+For example, is $\mathbb Q$ countable?
+How about $\mathbb R$?
+\begin{proposition}
+    Let $A$ be a set, then $A$ is countable iff there is an injection $f:A\to\mathbb N$
+\end{proposition}
+\begin{proof}
+    If $A$ is countable, it is obvious that there is an injection.\\
+    Conversely, it is done if $A$ is finite, so we can henceforth assume that $A$ is infinite.
+    Note that $f(A)=\operatorname{Im}f$ is a subset of $\mathbb N$ and $f$ is a bijection $A\to f(A)$.
+    So it is enough to show that $f(A)$ is countable.
+    We can order $f(A)$ like we did in $\mathbb N$, then define $b_n$ recursively by $b_1=\min f(A)$ and $b_{n+1}=\min (f(A)\setminus\{b_i:1\le i\le n\})$.
+    So the sequence $\{b_n\}_{n\in\mathbb N}$ lists $f(A)$, hence $f(A)$ is countable, so $A$ is countable.
+\end{proof}
+\begin{corollary}
+    Every subset of a countable is countable.
+\end{corollary}
+\begin{remark}
+    Consider the set $\{n/(n+1):n\in\mathbb N\}\cup\{1\}\subset \mathbb R$, then this set is countable, but we cannot hit everything by writing every element in increasing order.
+\end{remark}
+\begin{theorem}
+    $\mathbb N\times\mathbb N$ is countable.
+\end{theorem}
+\begin{proof}
+    Define the listing $a_1,a_2,\ldots\in\mathbb N\times\mathbb N$ by $a_1=(1,1)$ and if we have $a_n=(p,q)$, then
+    $$a_{n+1}=\begin{cases}
+        (p-1,q+1)\text{, if $p>1$}\\
+        (p+q,1)\text{, otherwise}
+    \end{cases}$$
+    This lists all points in $\mathbb N\times\mathbb N$.
+    All $(x,y)\in\mathbb N\times\mathbb N$ are hit by induction on $x+y$.
+\end{proof}
+\begin{proof}[Alternative proof]
+    Consider the map $f:\mathbb N\times\mathbb N\to\mathbb N$ by $(a,b)\mapsto 2^a3^b$ is an injection.
+\end{proof}
+More generally, the same shows
+\begin{corollary}\label{union_countable}
+    Let $\{A_i\}_{i\in\mathbb N}$ be a collection of countable sets, then $\bigcup_{i\in \mathbb N}A_i$ is countable.
+\end{corollary}
+\begin{proof}
+    Each $A_i$ is countable, so we can list $A_i$ as $\{a_{i1},a_{i2},\ldots\}$ (which might terminate if $A_i$ is finite).
+    Now consider the function $f:\bigcup_{i\in \mathbb N}A_i\to\mathbb N$ by $x\mapsto 2^i3^j$ where $x=a_{ij}$ such that $i$ is the least such that $x\in A_i$ and $j$ is the least such that $x=a_{ij}$.
+    This is an injection.
+\end{proof}
+\begin{example}
+    1. $\mathbb Q$ is countable.
+    Indeed,
+    $$\mathbb Q=\bigcup_{n\in\mathbb N}\frac{1}{n}\mathbb Z$$
+    So we are done by the preceding corollary.
+    Alternatively, there is an obvious injection from $\mathbb Q$ to $\mathbb Z\times\mathbb Z$.\\
+    2. The set $\mathbb A$ of all algebraic numbers is countable.
+    Indeed, each polynomial has only finitely many roots, so it is enough to show that there are couontably many integer polynomials, then the claim is proved by Corollary \ref{union_countable}.
+    But again by this corollary it is enough to show that there are only countably many integer polynomials of degree $d$ for any $d\in\mathbb N$.
+    However this set injects to $\mathbb Z^{d+1}$ by $a_0+a_1x+\cdots+a_dx^d\mapsto (a_0,a_1,\ldots,a_d)$, so it is countable.
+\end{example}
+We have got many many countable sets in our stock, so the question is then whether all sets are countable.
+\begin{theorem}
+    $\mathbb R$ is uncountable (that is, not countable).
+\end{theorem}
+\begin{proof}
+    It suffices to show that $(0,1)$ is uncountable.
+    So given any sequence $r_1,r_2,\ldots$ of $(0,1)$, we shall show that there is some $s\in (0,1)$ that is not of the form $r_i$.
+    We write each number in $\{r_i:i\in\mathbb N\}$ as decimals.
+    That is, $r_i=0.r_{i1}r_{i2}\ldots$.
+    For each $n\in\mathbb N$, choose a digit $s_n\in\{5,6\}\setminus\{r_{nn}\}\neq\varnothing$,
+    \footnote{There is nothing special about $5,6$, we just need to get rid of the case of $9999\ldots$}
+    then $0.s_1s_2\ldots\in (0,1)$ is not of the form $a_i$.
+\end{proof}
+The above proof is called Cantor's Diagonal Argument.
+\begin{remark}
+    $\mathbb A\cap \mathbb R$ is countable but $\mathbb R$ is not, so there exists transcendental numbers.
+    In fact, ``most'' reals are transcendental, as the set $\mathbb R\setminus\mathbb A$ is uncountable.
+\end{remark}
+\begin{theorem}
+    $2^{\mathbb N}$ is uncountable.
+\end{theorem}
+\begin{proof}
+    Suppose $2^{\mathbb N}=\{s_1,s_2,\ldots\}$.
+    Consider the set $S\subset\mathbb N$ by $n\in S\iff n\notin s_n$, that is $\{n\in\mathbb N:n\notin s_n\}$, so $S\neq s_i$ for any $i$, contradiction.
+\end{proof}
+\begin{remark}
+    This really is exactly the proof idea of $\mathbb R$ being uncountable.
+    Alternatively, we can actually inject $(0,1)$ to $2^\mathbb N$ by writing in base $2$.
+\end{remark}
+The proof above can be actually extended to the following:
+\begin{theorem}
+    Let $X$ be a set, then there is no bijection $X\to 2^X$.
+\end{theorem}
+For example, there is no bijection between $\mathbb R$ and $2^{\mathbb R}$.
+\begin{proof}
+    Let $f:X\to 2^X$ be a function.
+    Consider the set $S=\{x\in X:x\notin f(x)\}$.
+    But $S\notin f(X)$ since for any $x\in X,S\neq f(x)$ (as $x\in S\iff x\notin f(x)$), so $f$ is not surjective.
+\end{proof}
+Note that the set $S=\{x\in X:x\notin f(x)\}$ is very similar to Russel's Paradox.\\
+Now we want to explore more countability arguments.
+\begin{example}
+    Any collection $\{A_i\}_{i\in I}$ of pairwise disjoint intervals is countable.
+    The first proof that we can do is to inject the set into the rational numbers by choosing one from each interval.
+    The second proof is by observing that the numbers of intervals in the family with length at least $1/n$ is countable, then we can write our family as a countable union of countable sets, hence is countable.
+\end{example}
+There are generally two sorts of arguments to show a set is uncountable, either copying the diagonal argument or inject an uncountable set to it.
+To show it is countable, either we can list it (which however often get fiddly) or we can inject it into a countable set.
+Another way is to use the fact that a countable union of countable sets is countable.\\
+Now consider $A,B$ nonempty.
+Intuitively, we think of $A$ bijecting with $B$ as saying that the size of $A$ is the size of $B$.
+Similarly, we think of $A$ injecting into $B$ as $A$ has at most as large as $B$, and $A$ surjecting to $B$ as $A$ has at least as large as $B$.
+For these to make sense, we certainly want that $A$ injects into $B$ if and only if $B$ surjects into $A$.
+Indeed, given $f:A\to B$ injective, then consider $a\in A$, then $g:B\to A$ by
+$$b\mapsto\begin{cases}
+    f^{-1}(b)\text{, if $b\in f(A)$}\\
+    a\text{, otherwise}
+\end{cases}$$
+Then $g$ is surjective.
+Conversely, given $g:B\to A$ surjective, consider $f:A\to B$ with $a\mapsto a'$ by choosing an $a'\in g^{-1}(\{a\})$.
+\footnote{Does it depend on the Axiom of Choice?}
+Also it is intuitive that if $A$ injects into $B$ and $B$ injects into $A$, then $A$ bijects with $B$.
+\begin{theorem}[Schr\"oder–Bernstein]
+    Let $f:A\to B$ and $g:B\to A$ be injective, then there is a bijection $h:A\to B$
+\end{theorem}
+\begin{proof}
+    For $a\in A$, we write $g^{-1}(a)$ for the unique (if exists) point in $B$ such that $g(g^{-1}(a))=a$.
+    Define similarly $f^{-1}(b)$ for $b\in B$.
+    The ``ancestors'' of $a\in A$ consists of
+    $$g^{-1}(a), f^{-1}(g^{-1}(a)),g^{-1}(f^{-1}(g^{-1}(a))),f^{-1}(g^{-1}(f^{-1}(g^{-1}(a)))),\ldots$$
+    which may or may not terminate.
+    Similarly for $b\in B$.
+    Let $A_0$ be the set of $a\in A$ such that the ancestor sequence of $a$ that terminates in even time, that is it has even length (so it includes those $a\notin g(B)$ since $0$ is even).
+    And $A_1$ be the set of $a\in A$ such that the ancestor sequence of $a$ that terminates in odd time, $A_\infty$ be those whose ancestor sequence does not terminate.
+    Similarly construct $B_0,B_1,B_\infty$.
+    So $A_0,A_1,A_\infty$ partitions $A$ and $B_0,B_1,B_\infty$ partitions $B$.
+    By definition, $f|_{A_0}$ is a bijection $A_0\to B_1$ (as every $b\in B_1$ is in the image of $f|_{A_0}$).
+    And simiarly, $g|_{B_0}$ is a bijection $B_0\to A_1$.
+    As for infinity cases, $f|_{A_\infty}$ is a bijection $A_{\infty}\to B_\infty$, so the function $h$ can be defined by
+    $$h(a)=
+    \begin{cases}
+        f(a)\text{, if $a\notin A_1$}\\
+        g^{-1}(a)\text{, if $a\in A_1$}
+    \end{cases}$$
+    Then $h:A\to B$ is well-defined and bijective.
+\end{proof}
+\begin{example}
+    $[0,1]$ and $[0,1]\cup [2,3]$ biject.
+    Indeed, $x\mapsto x$ is an injection from $[0,1]\to [0,1]\cup [2,3]$.
+    Also $x\mapsto x/3$ injects $[0,1]\cup[2,3]$ to $[0,1]$
+\end{example}
+Now, is it true that for any sets $A,B$, either $A$ injects into $B$ or vice versa?
+The answer is yes, but very hard and way beyond the scope of this course.\\
+Now given $\mathbb N$, we can construct a strictly increasing sequence (in terms of sizes) $\mathbb N,2^{\mathbb N}, 2^{2^{\mathbb N}},\ldots$, but does every set injects into one of them?
+The answer is obviously no, since we can take $X=\mathbb N\cup 2^{\mathbb N}\cup 2^{2^{\mathbb N}}\cup\cdots$.
+Now this is definitely not the biggest set either, since we can now take again $X,2^X, 2^{2^X},\ldots$, which is again beaten by the union $X'$ of all of them.
+We can then construct a sequence $X,X',X'',\ldots$, which is again beaten by $X\cup X'\cup X''\cup\cdots$.
+And we can do the same thing again and again and again and this never ends... (but the course does here).

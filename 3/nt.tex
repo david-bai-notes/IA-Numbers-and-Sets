@@ -1,0 +1,424 @@
+\section{Elementary Number Theory}
+Let $n$ be an natural number.
+The multiples of $n$ are all integers $kn$ where $k\in\mathbb Z$.
+For example, $2n,5n,n,-4n,0$ are all multiplies of $n$.
+\begin{definition}
+    If $m$ is a multiple of $n$, we say $n$ divides $m$, or $n$ is a divisor of $m$, written as $n|m$.
+\end{definition}
+\begin{definition}
+    We say a natural number $n\ge 2$ is a prime if it has no divisors apart from $1$ and $n$.\\
+    Otherwise, we call it to be composite.
+\end{definition}
+\begin{example}
+    $2,3,5,7,11,13,17,\ldots$ are prime.\\
+    $10,25,34,44,57$ are composite.
+\end{example}
+Our aim now is to break up a number into primes, for example $63=3\time 3\time 7$, and hopefully it would be unique.
+\begin{proposition}
+    Every natural number $n\ge 2$ is expressible as a product of primes.
+\end{proposition}
+\begin{proof}
+    Strong induction.\\
+    The statement is obvious true for $n=2$.
+    Given an $n>2$, if it is prime, then it is done.
+    Otherwise, we can write $n=ab$ where $n>a,b>1$.
+    By induction hypothesis, we can write $a,b$ as a product of primes.
+    $$a=p_1p_2\cdots p_k, b=q_1q_2\cdots q_l$$
+    where $p_i,q_i$ are primes.
+    So $n=p_1p_2\cdots p_kq_1q_2\cdots q_l$, therefore the statement is true for $n$.
+    And it's done.
+\end{proof}
+\begin{remark}
+    1. Although we start at $2$, sometimes you can regard $1$ as a product of no primes.\\
+    2. There is no nice pattern of primes.
+    There is no algebraic formula for the $n^{th}$ prime.
+\end{remark}
+\begin{theorem}
+    There are infinitely many primes.
+\end{theorem}
+\begin{proof}
+    Suppose for the same of contradiction that there is only finitely many, let
+    $$p_1,p_2,\ldots, p_n$$
+    be the primes.
+    So consider $k=p_1p_2\cdots p_n+1$, it does not have any prime factors as none of the primes divide $k$.
+    This is a contradiction to the fact that $k$ has a prime factorisation.
+\end{proof}
+\begin{theorem}
+    The prime factorization of any positive integer $n\ge 2$ is unique.
+\end{theorem}
+The uniqueness is taken up to re-ordering.
+Why is it true?
+Why can't $41\times 101=67\times 73$?
+We need $p|ab\implies p|a\lor p|b$ where $p$ is a prime number.
+We need $p$ to be prime since $6|8\times3$ but $6\nmid 8$ and $6\nmid 3$.
+This has to be hard to prove since it is about prime dividing things instead of things dividing primes, as in the definition.
+\subsection{Highest Common Factors}
+\begin{definition}
+    For integers $a,b$ we say the positive integer $c$ is the HCF (Highest Common Factor) of $a,b$ if\\
+    1. $c|a$ and $c|b$. ($c$ is a common factor of $a,b$)\\
+    2. For any positive integers $d$ such that $d|a$ and $d|b$, then $d|c$. (every common factor of $a,b$ divides c).
+\end{definition}
+\begin{example}
+    The HCF of $18$ and $12$ is $6$.
+\end{example}
+We want to show that an HCF always exists
+\begin{proposition}[Division Algorithm]
+    For natural numbers $n,k$, we can write $n=qk+r$, for some integers $q,r$ with $0\le r<k$.
+\end{proposition}
+\begin{proof}
+    Induction on $n$.
+    $n=1$ is trivial.\\
+    Given $n>1$, we have $n-1=qk+r$ for some integers $q,r$ with $0\le r<k$.\\
+    If $r<k-1$, then we have $n=qk+(r+1)$.
+    If $r=k-1$, then $n=(q+1)k+0$.
+\end{proof}
+We can find HCF by Euclid's Algorithm.
+\begin{definition}
+    The HCF of $a$ and $b$ where $a\ge b$.\\
+    Write $q_1b+r_1$ (where $0\le r_1<b$).\\
+    Then write $b=q_2r_1+r_2$ (where $0\le r_2<r_1$).\\
+    Then write $r_1=q_3r_2+r_3$ (where $0\le r_3<r_2$).\\
+    Continue this process until some remainder $r_{n-1}=q_{n+1}r_n+r_{n+1}$ where $r_{n+1}=0$.
+    (If necessary, take $a=r_{-1}, b=r_0$)
+    That is, some remainder goes to $0$. 
+\end{definition}
+\begin{example}
+    $372,162$\\
+    $372=2\times 162+48$.\\
+    $162=3\times 48+18$.\\
+    $48=2\times 18+12$.\\
+    $18=1\times 12+6$.\\
+    $12=2\times 6+0$.\\
+    So the HCF of $372,162$ is $6$.
+\end{example}
+\begin{theorem}
+    The Euclid's Algorithm works.\\
+    That is, the HCF exists and can always be found by Euclid's Algorithm.
+\end{theorem}
+\begin{proof}
+    Let $r_n$ be the output.
+    Firstly, it is a common factor of $a,b$, since $r_n|r_{n-1},r_n|r_{n-2}|\cdots,r_n|b,r_n|a$ inductively.\\
+    Then, for any other common factor $d$ of $a,b$, we know that $d|r_1$, inductively $d|r_i$ for every $i$, then $d|r_n$.\\
+    Note that the algorithm always terminate, since the sequence $r_i$ is strictly decreasing.
+    In fact, there are at most $b$ steps before it terminates.
+\end{proof}
+\begin{example}
+    $82,57$\\
+    $82=57\times 1+25$.\\
+    $57=25\times 2+7$.\\
+    $25=7\times 3+4$.\\
+    $4=3\times 1+1$.\\
+    $3=3\times 1+0$.\\
+    So the HCF of $82,57$ is $1$.
+\end{example}
+If two positive integers have HCF $1$, we say that they are coprime.\\
+Can we write $1=82x+57y$ for some integers $x,y\in\mathbb Z$?
+So we have $1=4-3=4-(7-4)=2\times 4-7=2\times (25-3\times 7)-7=2\times 25-7\times 7=2\times 25-7\times(57-2\times 25)=-7\times 57+16\times 25=-7\times 57+16\times(82-57)=-23\times 57+16\times 82$.
+In fact, this algorithm provides a proof that it always works that for any coprime $p,q$ we have $x,y\in\mathbb Z$ with $1=xp+yq$.
+\begin{theorem}
+    $\forall a,b\in\mathbb N,\exists x,y\in\mathbb Z,\operatorname{HCF}(a,b)=xa+yb$.
+\end{theorem}
+\begin{proof}
+    Run the Euclid's Algorithm on $a,b$ to $r_n$.
+    We have $r_n$ written as an integral combination of $r_{n-1},r_{n-2}$.
+    Then substitute for $r_{n-1}$ to obtain $r_n$ as an integral combination of $r_{n-2},r_{n-3}$.
+    Inductively, we can write $\operatorname{HCF}(a,b)=r_n$ as an integral combination of $a,b$.
+\end{proof}
+\begin{remark}
+    Euclid is telling us that such $x,y$ exists and how to find them in practice.
+\end{remark}
+There is a second proof to this statement.
+\begin{proof}[Alternative Proof]
+    Consider the set $\{ax+by:x,y\in\mathbb Z\}$, and let $h$ be the least positive integer in this set.\\
+    We claim that $h$ is the HCF of $a$ and $b$.
+    If $d|a$ and $d|b$ then $d|ax+yb\implies d|h$.\\
+    Now $h$ must be a common factor of $a,b$.
+    Suppose that $h\nmid a$, then $a=qh+r$ where $q\in\mathbb Z, 0<r<h$.
+    However, $r$ would be an integral combination of $a,b$, but this contradicts the minimality of $h$.\\
+    So $h|a$ and similarly $h|b$, so $h$ is an HCF of $a,b$.
+\end{proof}
+\begin{remark}
+    The alternative proof is abstract, nice, and more concise, but it is non-constructive.
+    It does not tell us how to find such an integral combination.
+\end{remark}
+One of the applications of this fact is to solve (linear) Diophantine Equations.\\
+Fix $a,b\in\mathbb N$, when can we solve $ax=b,x\in\mathbb Z$?
+Obviously we have an solution if and only if $a|b$ and the solution is $b/a$.
+But how about $2$ variables?
+Suppose $a,b,c\in\mathbb N$, when can we solve $ax+by=c$ in $\mathbb Z$?
+We cannot solve $116x+212y=13$ due to parity problems, but we can solve $82x+57y=13$ by multiplying $13$ to the integral combination of $1$ by $82,57$
+\begin{corollary}[Bezout Theorem]
+    $ax+by=c$ is solvable in $\mathbb Z$ if and only if $\operatorname{HCF}(a,b)|c$.
+\end{corollary}
+\begin{proof}
+    $h$ the HCF of $a,b$.\\
+    If there is a solution, we have $c=ax+by$ for some $x,y\in Z$ so $h|ax+by=c$.
+    Conversely, if $h|c\implies c=qh,q\in\mathbb N$, since we can write $h=ax+by$ for some $x,y\in Z$, $c=qh=a(qx)+b(qy)$. 
+\end{proof}
+We are now ready to prove
+\begin{proposition}
+    Let $p$ be prime, $a,b\in\mathbb N$, then $p|ab\implies p|a\lor p|b$.
+\end{proposition}
+\begin{proof}
+    Given that $p|ab$, suppose that $p\nmid a,p\nmid b$.
+    So the HCF of $p,a$ is $1$, therefore $\exists x,y\in\mathbb Z, px+ay=1$.
+    Note that here we have produced a positive statement here.
+    So $pbx+aby=b$, but since $p|ab,p|pbx+aby=b$, which is a contradiction.
+\end{proof}
+This establishes the statement we have claimed in the preceding section.
+\begin{remark}
+    Immediately, if $p|a_1a_2\ldots a_n$, then $p|a_i$ for some $i$.
+\end{remark}
+\subsection{Fundamental Theorem of Arithmetic}
+When we have established the theory so far, we are ready to show
+\begin{theorem}[Fundamental Theorem of Arithmetic]
+    Any positive integer $n\ge 2$ can be written as a product of primes uniquely up to reordering.
+\end{theorem}
+\begin{proof}
+    We already know that any positive integer $n\ge 2$ can be written as such a product, so the rest is to prove its uniqueness up to reordering.\\
+    Uniqueness can be proved by (strong) induction on $n$. $n=2$ is obvious.
+    Given $n>2$, suppose that
+    $$p_1p_2\cdots p_k=n=q_1q_2\cdots q_l$$
+    where $p_i,q_i$ are primes, we want to show $k=l$ and after reordering $p_i=q_i,\forall i$.\\
+    We have $p_1|q_1q_2\cdots q_l$, so $p_1|q_i$ for some $i$.
+    We can reorder such that $q_i\mapsto q_1$.
+    Note that due to primity, $p_1=q_1$, thus
+    $$p_2p_3\cdots p_k=q_2q_3\cdots q_l$$
+    By induction hypothesis, $k-1=l-1\implies k=l$ and we can reorder such that $p_i=q_i, i\ge 2$.
+    So the theorem is proved. 
+\end{proof}
+What ideas are involved?
+We took the things that cannot be broken up (i.e. primes) and we break everything up into the product of those `unbreakables' (irreducibles).\\
+However, this may not be the case.
+Despite the fact that we are used to it, unique factorization really isn't obvious.
+\begin{example}
+    Consider the set $\mathbb Z(\sqrt{-3})=\{a+b\sqrt{-3}:a,b\in\mathbb Z\}$.\\
+    We can do addition and multiplication in it in the obvious way, and the set is closed under both.
+    So we can define `divides' and `factor of' etc.
+    One can show that everything can be broken into irreducibles.
+    But $4=2\times 2=(1+\sqrt{-3})(1-\sqrt{-3})$, and $2,1\pm\sqrt{-3}$ are all irreducibles.\\
+    Therefore in this funny set, the fundamental theorem of arithmetic doesn't work.
+\end{example}
+There are a few applications of unique factorization.
+First of all, we want to look into factors.
+Consider $n=2^3\cdot 3^7\cdot 5\cdot 11$, we can spot factors of the form $2^a\cdot 3^b\cdot 5^c\cdot 11^d, 0\le a\le 3, 0\le b\le 7, 0\le c\le 1, 0\le d\le 1$.
+We do not have others because of unique factorization.
+In general, the factors of $n=p_1^{a_1}\cdots p_k^{a_k}$ where $p_i$ are distinct primes are of the form $p_1^{b_1}\cdots p_k^{b_k}$ where $0\le b_i\le a_i$.\\
+Also, we can find HCF easily.
+For example, the common factors of $2^3\cdot 3^2\cdot 5\cdot 11$, $2^2\cdot 3^6\cdot 5\cdot 11$ are of the form $2^a\cdot 3^b\cdot 11^c$ where $0\le a\le 2, 0\le b\le 2, 0\le c\le 1$, so the HCF is $2^2\times 3^2\times 11$.
+In general, the HCF of $p_1^{a_1}\cdots p_k^{a_k}$ and $p_1^{b_1}\cdots p_k^{b_k}$ is $p_1^{\min\{a_1,b_1\}}\cdots p_k^{\min\{a_k,b_k\}}$.\\
+We can find LCM as well.
+The LCM of the numbers in the last example would be $2^3\times 3^6\times 5\times 7\times 11$
+In general, the LCM of $p_1^{a_1}\cdots p_k^{a_k}$ and $p_1^{b_1}\cdots p_k^{b_k}$ is $p_1^{\max\{a_1,b_1\}}\cdots p_k^{\max\{a_k,b_k\}}$.\\
+Note that $\operatorname{HCF(a,b)}\times\operatorname{LCM(a,b)}=a\times b$.
+\subsection{Modular Arithmetic}
+\begin{definition}
+    Let $n\ge 2$ be a positive integer, then $\mathbb Z_n$ consists of integers with two of them regarded as the same if their difference is a multiple of $n$.
+\end{definition}
+For example, in $\mathbb Z_7$, $2$ and $16$ are the same.\\
+If $a$ and $b$ are the same in $\mathbb Z_n$, we write $a\equiv b\pmod{n}$.\\
+In this world, we only care about the remainder when we divide it by $n$.
+In $\mathbb Z_n$, $0,1,\ldots ,n-1$ are distinct and every $k\in\mathbb Z_n$ is one of them by division algorithm.
+So we can view $\mathbb Z_n$ as an $n$-clock.\\
+We can do addition and multiplication in $\mathbb Z_n$.
+Note that parity does not make sense in $\mathbb Z_{2n-1}$.
+So we would have to check that they are well-defined.
+\begin{proposition}
+    Suppose $a\equiv a'\pmod n,b\equiv b'\pmod n$, then $a+b\equiv a'+b'\pmod n, ab\equiv a'b'\pmod n$.
+\end{proposition}
+\begin{proof}
+    Trivial.
+\end{proof}
+All the usual laws of arithmetic applies as $\mathbb Z_n$ inherited them from $\mathbb Z$.\\
+Something we have done so far can already be expressed in terms of modular arithmetic.
+For example, $ab\equiv 0\pmod{p}\implies a\equiv 0\pmod{p}\lor b\equiv 0\pmod{p}$ if $p$ is a prime number.
+Or equivalently, there is no zero divisor in $\mathbb Z_p$.\\
+The structure of $\mathbb Z_n$ under addition is boring enough (just a cyclic group), but how about it under multiplication?
+\begin{definition}
+    In $\mathbb Z_n$, we say $a$ is the inverse of $b$ if $ab\equiv 1\pmod{n}$.
+\end{definition}
+\begin{example}
+    1. In $\mathbb Z_{10}$, $3\times 7\equiv 1\pmod{10}$ so $7$ is the inverse of $3$.\\
+    2. (non-example) There is no inverse of $4$ in $\mathbb Z_{10}$ since $4b$ is even for all $b\in\mathbb Z$ so we can never have $4b\equiv 1\pmod{10}$.
+\end{example}
+If $a$ has an inverse $b$, we write $b=a^{-1}$ given that the $n$ in $\mathbb Z_n$ is understood.
+\begin{remark}
+    1. If inverse exists, it is unique (in $\mathbb Z_n$).
+    Indeed, suppose $ab\equiv ac\equiv 1\pmod{n}$, but then $b\equiv bab\equiv bac\equiv c\pmod{n}$.\\
+    2. If $ab\equiv ac\pmod{n}$ and $a$ has an inverse, then $b\equiv c\pmod n$ by multiplying both sides by $a^{-1}$.
+    However, if $a$ does not have an inverse, you cannot really cancel it.
+    For example $4\times 5\equiv 4\times 0\pmod{10}$, but $5\not\equiv 0\pmod{10}$.
+\end{remark}
+$\mathbb Z_n$ is quite nice if $n$ is prime.
+\begin{proposition}
+    $\forall a\not\equiv 0\pmod{p},\exists b\in\mathbb Z_p,ab\equiv 1\pmod{p}$.
+\end{proposition}
+\begin{proof}
+    We know that $(a,p)=1$, so there are some $x,y\in\mathbb Z,ax+py=1\implies ax\equiv 1\pmod{p}$.
+    We can take $b=x$.
+\end{proof}
+\begin{proof}[Alternative proof]
+    IN $\mathbb Z_p$, consider $0a,1a,2a,\ldots,(p-1)a$.
+    Our task is to show that one of these equals $1$.
+    Note that no two of them are equal, since $ia\equiv ja\pmod{p}\implies (i-j)a\equiv 0\pmod{p}\implies i\equiv j\pmod{p}$.\\
+    Therefore $\{ka:k\in\{0,1,\ldots,p-1\}\}=\{0,1,\ldots,p-1\}$.
+    so there is some $b$ such that $ba\equiv 1\pmod{p}$.
+\end{proof}
+How about the case in $\mathbb Z_n$ when $n$ is composite?
+\begin{proposition}
+    $\forall a\in\mathbb Z$, there is some $b$ such that $ab\equiv 1\pmod{n}$ if and only if $(a,n)=1$.
+\end{proposition}
+\begin{proof}
+    If $a$ is invertible, then there is some $b,y\in\mathbb Z$ such that $ab+ny=1$, which means that $(a,n)=1$.\\
+    Conversely, if $(a,n)=1$, then there is some $x,y\in\mathbb Z, ax+ny=1\implies ax\equiv 1\pmod{n}$, so we can take $b=x$.
+\end{proof}
+\begin{definition}
+    The Euler $\phi$ function is defined by
+    $$\phi(n)=|\{0<a<n:(a,n)=1\}|$$
+\end{definition}
+Equivalently, $\phi(n)$ is the number of invertible elements in $\mathbb Z_n$.
+\begin{example}
+    1. $\phi(p)=p-1$ for any prime $p$.\\
+    2. $\phi(p^2)=p^2-p=p(p-1)$ for any prime $p$.\\
+    3. $\phi(pq)=pq-p-q+1=(p-1)(q-1)=\phi(p)\phi(q)$ for any distinct primes $p,q$.\\
+    4. $\phi(p^n)=p^n-p^{n-1}=p^{n-1}(p-1)$ for any prime $p$ and positive integer $n$.
+\end{example}
+We now introduce the order of an element by a few observations:
+In $\mathbb Z_7$, $2^1\equiv 2, 2^2\equiv 4, 2^3\equiv 1$ and things go around again.
+In $\mathbb Z_{11}$, $2^1\equiv 2, 2^2\equiv 4, 2^3\equiv 8, 2^4\equiv 5, 2^5\equiv 10, \ldots, 2^{10}\equiv 1\pmod 11$ and things repeat.
+\begin{theorem}[Fermat's Little Theorem (F$\ell$T)]
+    Let $p$ be a prime, then in $\mathbb Z_p$, every $a\not\equiv 0$ has $a^{p-1}\equiv 1$.
+\end{theorem}
+\begin{proof}
+    Note that $\{ka:k\in\{1,\ldots,p-1\}\}=\{1,\ldots,p-1\}$.\\
+    So we have
+    $$\prod_{k=1}^{p-1}ak\equiv\prod_{k=1}^{p-1}k\pmod{p}\implies (a^{p-1}-1)(p-1)!\equiv 0\pmod{p}$$
+    Now $(p-1)!\neq 0\pmod{p}$ since all the terms in the product is invertible.
+    Therefore the theorem.
+\end{proof}
+For composite $n$, we have a similar proposition.
+\begin{theorem}[Fermat-Euler Theorem]
+    Let $n\ge 2$ be a positive integer, then in $\mathbb Z_n$, every invertible $a$ has $a^{\phi(n)}\equiv 1$.
+\end{theorem}
+\begin{proof}
+    Note that $\{ka:0<k<n,(k,n)=1\}=\{k:0<k<n,(k,n)=1\}$.
+    Since $a$ is invertible, we have $ia\equiv ja\pmod{n}\implies i\equiv j\pmod{n}$\\
+    So we have
+    \begin{align*}
+        \prod_{0<k<n,(k,n)=1}ak\equiv\prod_{0<k<n,(k,n)=1}k\pmod{n}\\
+        \implies(a^{\phi(n)}-1)\prod_{0<k<n,(k,n)=1}k\equiv 0\pmod{n}
+    \end{align*}
+    Now $\prod_{0<k<n,(k,n)=1}k\neq 0\pmod{n}$ since all the terms in the product is invertible.
+    Therefore $a^{\phi(n)}\equiv 1\pmod{n}$.
+\end{proof}
+\begin{lemma}
+    Let $p$ be prime, then in $\mathbb Z_p$, the solutions to $x^2\equiv 1\pmod{p}$ are $x=\pm 1$.
+\end{lemma}
+Note that it is not true when $p$ is not prime.
+For example, $1^2\equiv 3^2\equiv 5^2\equiv 7^2\equiv 1$.
+\begin{proof}
+    $x^2\equiv 1\pmod{p}\iff (x-1)(x+1)\equiv 0\pmod{p}\iff x\equiv\pm 1\pmod{p}$ since $p$ is prime.
+\end{proof}
+\begin{remark}
+    Any nonzero polynomial of degree $d$ in $\mathbb Z_p$ has at most $d$ solutions.
+\end{remark}
+Note that in the proof of F$\ell$T, there is the expression $(p-1)!$.
+It looks like as if it is some interesting thing.
+Note that $(3-1)!\equiv -1\pmod{3},(5-1)!\equiv -1\pmod{5},(7-1)!\equiv -1\pmod{7}$.
+So it is natural to state the following, which is in fact true:
+\begin{theorem}[Wilson's Theorem]
+    Let $p$ be a prime, then $(p-1)!\equiv -1\pmod{p}$
+\end{theorem}
+\begin{proof}
+    When $p=2$ it is trivial, so we assume henceforth that $p>2$.\\
+    Note that all of $1,2,\ldots ,p-1$ are invertible.
+    So we can pair up the elements with their inverses, and they have a product $1$.
+    We have the pairs as long as we do not have $x^2\equiv 1\pmod{p}\implies x\equiv 1\lor x\equiv p-1\pmod{p}$.
+    Hence $(p-1)!\equiv 1(p-1)\equiv -1\pmod{p}$.
+\end{proof}
+When is $-1$ a square modulo $p$?
+Is there $x\in\mathbb Z$ with $x^2\equiv -1\pmod{p}$?
+\begin{example}
+    When $p=5$, we notice that $2^2\equiv -1\pmod{5}$
+    When $p=7$, by trying, we know that such $x$ does not exist.
+    When $p=13$, $5^2=25\equiv -1\pmod{13}$.
+    when $p=19$, by trying, we know that such $x$ does not exist.
+\end{example}
+By looking at the pattern, we can try to prove the following theorem
+\begin{theorem}
+    For a prime number $p>2$, then $x^2\equiv -1\pmod{p}$ is solvable if and only if $p\equiv 1\pmod{4}$.
+\end{theorem}
+\begin{proof}
+    If $p=4k+3$ for some $k\in\mathbb N$ but $x^2\equiv -1\pmod{p}$ for some $x\in\mathbb Z$.
+    But we also have $-1\equiv (x^2)^{2k+1}=x^{4k+2}=x^{p-1}\equiv 1\pmod{p}$, which is a contradiction.\\
+    Conversely, if $p=4k+1$, Wilson's theorem tells us that $(4k)!\equiv -1\pmod{p}$.
+    Note that $4k-r\equiv -r-1\pmod{p}$, therefore $((2k)!)^2=((2k)!)^2(-1)^{2k}\equiv (4k)!\equiv -1\pmod{p}$.
+\end{proof}
+Now we go back solving linear congruences.
+\begin{example}
+    If we want to solve $7x\equiv 4\pmod{30}$.
+    Firstly we can find $7\cdot 13\equiv 1\pmod{30}$, we knew we can do this since $(7,30)=1$.
+    So $7x\equiv 4\pmod{30}\iff 13\cdot 7x\equiv 13\cdot 4\pmod{30}\iff x\equiv 22\pmod{30}$.
+\end{example}
+\begin{example}
+    Solve $10x\equiv 12\pmod{34}$.
+    Note that in this case $(10,34)\neq 1$ so we cannot do the same thing again.
+    However, we can throw it back to $\mathbb Z$, so $10x\equiv 12\pmod{34}\iff\exists y\in\mathbb Z, 10x=12+34y\iff\exists y\in\mathbb Z,5x=6+17y\iff 5x\equiv 6\pmod{17}$.
+    So from here on we can do the same thing again.
+    $5x\equiv 6\pmod{17}\iff x\equiv 7\times 6\equiv 8\pmod{17}$.
+\end{example}
+Now we want to try simultaneous ones.
+\begin{example}
+    \[
+        \begin{cases}
+            x\equiv 3\pmod{17}\\
+            x\equiv 5\pmod{19}
+        \end{cases}
+    \]
+    Can we solve it?
+    We would expect the answer being yes, since modulo $17,19$ should not ``intervene each other'' since $(17,19)=1$.
+    That is not a proof, but that is our intuition.
+\end{example}
+\begin{example}
+    \[
+        \begin{cases}
+            x\equiv 5\pmod{30}\\
+            x\equiv 8\pmod{34}
+        \end{cases}
+    \]
+    It then becomes immediate that this is not solvable due to parity problem.
+    What has gone wrong looks like that two modulos are related as $(30,34)=2$.
+\end{example}
+\begin{theorem}[Chinese Remainder Theorem]
+    The system of linear equations
+    \[
+        \begin{cases}
+            x\equiv a\pmod{u}\\
+            x\equiv b\pmod{v}
+        \end{cases}
+    \]
+    is solvable if $(u,v)=1$.
+    Moreover, the solution is unique modulo $uv$.
+\end{theorem}
+\begin{proof}
+    Existence: Since they are coprime, we have $su+tv=1$ for some $s,t\in\mathbb Z$, then $x=bsu+atv$ solves the system.\\
+    Uniqueness: If $x,x'$ are solutions, then $x-x'\equiv 0\pmod{u}$ and $x-x'\pmod{v}$, hence $x-x'\equiv 0\pmod{uv}$.
+    Conversely it is obvious that if $x\equiv x'\pmod{uv}$, then if $x$ is a solution so is $x'$.
+\end{proof}
+The exact same thing would work if you have more than $2$ equations in the system modulo pairwisely coprime numbers.
+This can be proved by CRT and induction.
+\subsection{Application of number theory}
+The RSA code is an example of an application of the Fermat-Euler theorem.
+Consider the following scenario: we want to send an encoded message to the receiver who is supposed to have a way to decode it.\\
+It seems ``obvious'' that knowing how to decode equals knowing how to encode.
+However, there is a way such that even if you know how to encode, it is still ``very hard'' to decode.
+That is, the process of finding an inverse function will takes a long period of time for the message to expire.\\
+We encode in the following way:
+Pick two large primes $p,q$, say a hundred digits each and take their product.
+A message is just a sequence of digits, so we can decompose it into not-so-long blocks such that the number represented by each block is less than both of the primes.
+Say one of these blocks is $x$, and we take an exponent $e\ge 2$ such that $(e,\phi(pq))=1$, and the encoding message would be the smallest positive integer with $x^e\equiv m\pmod{pq}$
+So to decode, we can find some $d$ with $de\equiv 1\pmod{\phi(pq)}$, so $m^d\equiv x\pmod{pq}$ by Fermat-Euler.
+This is the way to decode the message, so we just need to find such $d$, which is easy and fast by Euclid given that we do know $\phi(pq)$.\\
+Now we only need to know $pq$ and $e$ to encode, and we need to know $d$ (or $e$ and $\phi(pq)=(p-1)(q-1)$, since we can run Euclid) and $pq$ to decode.
+Observe here that if the decoder only know all eise information but $\phi(pq)$ explicitly, he will have to factorize $pq$.
+Thus, we can publish $pq$ and $e$, then anyone else can send a message to us, however, since only us know $d$, no one else can decode the message quickly since they will have to run a slow algorithm to try factorizing $pq$.

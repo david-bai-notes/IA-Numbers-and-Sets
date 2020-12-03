@@ -1,0 +1,314 @@
+\section{The Reals}
+\subsection{The Need of the Reals}
+We already have $\mathbb N, \mathbb Z, \mathbb Q$, then why are we introducing the reals?
+Why don't we stop at $\mathbb Q$?
+\begin{proposition}
+    There is no rational $x$ with $x^2=2$.
+\end{proposition}
+we can assume $x$ is positive since $(-x)^2=x^2$.
+\begin{proof}
+    Suppose we have some rational $x$ with $x^2=2$, then suppose $x=a/b$ for some positive integers $a,b$.
+    So $2b^2=a^2$, but the power of $2$ in the prime factorization of $a^2$ is even but that in $2b^2$ is odd.
+    This is a contradiction.
+\end{proof}
+\begin{remark}
+    Same argument shows that if $k\in\mathbb N$ is $x^2$ for some $x\in\mathbb N$, then $k$ is a perfect square.
+\end{remark}
+\begin{proof}[Alternative proof]
+    Again suppose that $x=a/b$ where $a,b\in\mathbb N$ has $x^2=2$.
+    So every $cx+d$ where $c,d\in\mathbb Z$ is of the form $e/b$ for some $e\in\mathbb Z$.
+    So $cx+d>0\implies cx+d\ge 1/d$, but then $0<x-1<1$, so $0<(x-1)^n<1/b$ for $n$ large, which is a contradiction since all $(x-1)^n$ is of the form $cx+d$ for some integer $c,d$ using $x^2=2$.
+\end{proof}
+How, in $\mathbb Q$, could we say $\mathbb Q$ has a gap?
+Consider the set of rationals whose squares are less than 2.
+Now all of these rationals are less than $2$, so $2$ is an upper bound.
+$1.5,1.42,1.415,\ldots$ are all upper bounds of this set, but there is no least upper bound.
+So that establishes the notion of there being a ``gap'', which is the thing we try to eliminate in our dream model of $\mathbb R$.
+\begin{definition}
+    The real numbers $\mathbb R$ is an ordered field with the least upper bound property.\\
+    Put it into axiom, the reals consists of a set $\mathbb R$, the binary operations $+,\times$, elements $1\neq 0$, and an order $<$ where\\
+    1. $(\mathbb R,+,0)$ is an abelian group.\\
+    2. $(\mathbb R,\times,1)$ is an abelian group.\\
+    3. $\times$ is distributive over $+$, so $\forall a,b,c\in\mathbb R,a\times(b+c)=a\times b+a\times c$.\\
+    4. For any $a,b\in\mathbb R$, exactly one of $a<b,a=b,a>b$ is true.
+    Also $a<b\land b<c\implies a<c$.\\
+    5. $\forall a,b,c\in\mathbb R$, $a<b\implies a+c<b+c$, $c>0\implies(a<b\implies ac<bc)$.\\
+    6. (Least-upper-bound property) For any nonempty $S\subset\mathbb R$ such that it is bounded from above (i.e. $\exists M\in\mathbb R, \forall x\in S,x<M$), there is a least upper bound of $S$.
+\end{definition}
+\begin{remark}
+    1. We can already conclude $0<1$ from axioms 1 to 5.
+    Indeed, if not, then $1<0$, so $0<-1$, so $0=0(-1)<(-1)(-1)=1$, contradiction.\\
+    2. We can embed $\mathbb Q$ into $\mathbb R$, but the Least-upper-bound property is false in $\mathbb Q$.\\
+    3. We do need the ``nonempty'' and ``bounded above'' conditions.
+    We need the former to ensure that there is indeed some element in $S$ to talk about order, and we need the latter to ensure that there is at least one upper bound.\\
+    4. We could constuct $\mathbb R$ from $\mathbb Q$ and we can check that axioms 1 to 6 hold.
+\end{remark}
+We write $\sup S$ to denote the least upper bound of $S$.
+\begin{example}
+    1. $S=\{x\in\mathbb R:0\le x\le 1\}$ be the closed interval $[0,1]$.
+    $2$ is an upper buond for $S$ since $\forall x\in S, x\le 2$, but $3/4$ is not since $1\in S$ but $1>3/4$.
+    The least upper bound is $1$, since $1$ is an upper bound for $S$ and for every upper bound $s$ of $S$ must be at least $1$ since $1\in S$.\\
+    2. $S=\{x\in\mathbb R:0<x<1\}$ be the open interval $(0,1)$.
+    Again, $2$ is an upper bound but $3/4$ is not since $S\ni 5/6>3/4$.
+    The least upper bound is $1$ since $1$ is an upper bound and for any upper bound $s$, if $s<1$ (note that $s<0$), we must have $S\ni (1+s)/2>s$ which is a contradiction.\\
+    3. $S=\{1-1/n:n\in\mathbb N\}$, then $\sup S=1$, since $1$ is clearly an upper bound and if there is an upper bound $s\in S$ such that $0<s<1$, then we take a natural number $n>1/(1-s)$, then $1-1/n>1-(1-s)=s$.
+\end{example}
+Note that in example 3, we have assumed the following proposition which we shall prove now.
+\begin{proposition}[Axiom of Archimedes]
+    $\forall x\in\mathbb R,\exists n\in\mathbb N,n>x$.
+\end{proposition}
+\begin{proof}
+    Suppose not, the $\mathbb N$ is bounded above, so let $c=\sup\mathbb N$, then $c-1$ is not an upper bound of $\mathbb N$, so $\exists n\in\mathbb N, n>c-1\implies\mathbb N\ni n+1>c$, contradiction.
+\end{proof}
+\begin{corollary}
+    Let $t\in\mathbb R_{>0}$, then there is some $n\in\mathbb N$ such that $1/n<t$.
+\end{corollary}
+\begin{proof}
+    Take $n>1/t$.
+\end{proof}
+So the reals do not contain infinity or infinitesimal.
+\begin{remark}
+    1. $\sup X$ might not be in $X$.
+    E.g. $\sup(0,1)=1\notin(0,1)$\\
+    2. The least-upper-bound property gives as well the existence of greatest lower bound for bounded-below subsets of $\mathbb R$.
+    Indeed, suppose $S\neq\varnothing$ is bounded below, then $-S=\{-s:s\in\mathbb S\}$ is bounded above, so there is some $x=\sup-S$.
+    Immediately $-x$ would be the greatest lower bound of $S$.
+    We denote it by $\inf S$.
+\end{remark}
+\begin{theorem}
+    There is $x\in\mathbb R$ such that $x^2=2$.
+\end{theorem}
+\begin{proof}
+    Consider the set $S=\{r\in\mathbb R:r^2<2\}$ which is nonempty ($1\in S$) and bounded above ($\forall s\in S,s<2$).
+    So there is some $c=\sup S$, also $1\le c<2$.\\
+    Consider $c^2$, if $c^2<2$, then for any $0<t<1$, we have $(c+t)^2=c^2+2ct+t^2\le c^2+5t$, so we choose any $0<t<(2-c^2)/5$, then $(c+t)^2<2$, so $c+t\in S$ but $c+t>c$, contradicting the assumption that $c$ is an upper bound.\\
+    If $c^2>2$, then for any $0<t<1$, we have $(c-t)^2=c^2-2ct+t^2\ge c^2-4t$, so we can choose $t$ such that $0<t<(c^2-2)/4$, therefore $(c-t)^2>2$, thus $c-t$ is an upper bound of $S$ as well, contradicting the fact that $c$ is the least upper bound.\\
+    Therefore $c^2=2$.
+\end{proof}
+Similarly, for any $x>0,n\in\mathbb N$, $\sqrt[n]{x}$ exists.
+\begin{definition}
+    A real $x$ that is not rational is called irrational.
+\end{definition}
+\begin{example}
+    $\sqrt 2,\sqrt 3,\sqrt 5,3+5\sqrt 2$ are irrational.
+\end{example}
+\begin{proposition}
+    For any $a,b\in\mathbb R,a<b,\exists q\in\mathbb Q, a<q<b$.
+\end{proposition}
+\begin{proof}
+    Suppose $a<b$ and WLOG $a,b\ge 0$.
+    Choose $n\in\mathbb N$ with $1/n<|b-a|=b-a$.
+    So we can find $k\in\mathbb N$, $k/n\le a$ and $(k+1)/n>a$.
+    Now if $(k+1)/n\ge b$, then $1/n<|b-a|\le (k+1)/n-k/n=1/n$, contradiction.
+    So $a<(k+1)/n<b$.
+\end{proof}
+\begin{corollary}
+    For any $a,b\in\mathbb R,a<b,\exists i\in\mathbb R\setminus\mathbb Q, a<i<b$.
+\end{corollary}
+\begin{proof}
+    $\exists q\in\mathbb Q, a/\sqrt 2<q<b/\sqrt 2$, so $i=q\sqrt 2$ works.
+\end{proof}
+\subsection{Sequences and Their Limits}
+What does $1+1/2+1/4+1/8+\ldots=2$ mean?
+Why does $0.33333\ldots=1/3$?
+When we come to think about it, we mean that, for example in the first case, $1,1+1/2,1+1/2+1/4,\ldots$ ``$\to$'' $2$.
+But what do we mean by that?
+We do not mean that the sequence will be eventually $x$, but can be ``arbitrarily close'' to that.
+\begin{definition}
+    The absolute value function $|x|$ is defined by
+    $$\forall x\in\mathbb R,|x|=
+    \begin{cases}
+        x\text{, if $x\ge 0$}\\
+        -x\text{, otherwise}
+    \end{cases}$$
+\end{definition}
+Regarding absolute value, we also have the triangle inequality
+\begin{proposition}
+    $|x-y|\le|x-z|+|z-y|$
+\end{proposition}
+\begin{proof}
+    Trivial.
+\end{proof}
+\begin{definition}
+    For a sequence $(x_n)$ of reals and $x\in\mathbb R$, we say $x_n\to x$ (as $n\to\infty$) or
+    $$\lim_{n\to\infty}x_n=x$$
+    if $\forall\epsilon>0,\exists N\in\mathbb N,\forall n>N,|x_n-x|<\epsilon$.
+\end{definition}
+So it means $x_n$ will ``eventually'' go $\epsilon$-close to $x$.
+\begin{example}
+    1. Consider the sequence $1/2,1/2+1/4,1/2+1/4+1/8,\ldots$, so $x_n=1-1/2^n$ inductively.
+    $\forall\epsilon>0$, we can choose $N\in\mathbb N$ such that $1/N<\epsilon$, for any $n\ge N$, $|1-x_n|=|1/2^n|\le |1/n|\le 1/N<\epsilon$, so $x_n\to 1$.\\
+    2. Any constant sequence converges to that constant.
+    Indeed, for any $\epsilon>0$, choose $N=1$, so for every $n>N$, the sequence is $c$ hence is $\epsilon$-close to the constant.\\
+    3. Consider $x_n=(-1)^n$.
+    This sequence does not converge to a limit.
+    Suppose it does, then suppose the limit is $c$, then we can choose $\epsilon=1$, then there is some $N\in\mathbb N$, such that $\forall k>N, |x_n-c|<\epsilon=1$, but we can choose $n$ such that $2n>N$, but $2=|x_{2n}-x_{2n+1}|\le |x_{2n}-c|+|x_{2n+1}-c|<2\epsilon=2$, contradiction.\\
+    3. Sequence needs not have a closed form, we can take
+    $$x_n=
+    \begin{cases}
+        1/n\text{, if $n$ is odd}\\
+        0\text{, otherwise}
+    \end{cases}$$
+    Then it is trivial that $x_n\to 0$.
+    $\forall\epsilon>0$, we choose $N$ such that $N>1/\epsilon$, then $\forall n\ge N,|x_n-0|\le 1/N<\epsilon$.
+\end{example}
+\begin{remark}
+    1. If $x_n\to c$ for some $c$, we say the sequence $(x_n)$ or $(x_n)_{n=1}^\infty$ is convergent.
+    If it is not the case, then we say it is divergent.
+    Note that the example $(-1)^n$ shows that a divergent sequence needs not to go to infinity.\\
+    2. Limits, if exist, are unique.
+    If $x_n\to c$ and $x_n\to d$, then $c=d$.
+    Indeed, if $c\neq d$, then $|c-d|>0$, so we choose $\epsilon=|c-d|/2$, so $\exists N_1\in\mathbb N,\forall n\ge N, |x_n-c|<\epsilon,\exists N_2\in\mathbb N,\forall n\ge N_2, |x_n-d|<\epsilon$, so let $N=\max\{N_1,N_2\}$, so $|c-d|=2\epsilon >|x_N-c|+|x_N-d|\ge |c-d|$, contradiction.
+\end{remark}
+A sequence given in the form $x_1,x_1+x_2,x_1+x_2+x_3,\ldots$ is called a series.
+We can write
+$$\sum_{n=1}^\infty x_n$$
+for the series, and the $k^{th}$ term of it is
+$$\sum_{n=1}^k x_n$$
+This is called a partial sum of the series.
+If a series is convergent, one can also write the infinite sum as its limit, so
+$$\sum_{n=1}^\infty \frac{1}{2^n}=1$$
+We should not write and cannot write something like ``let $c$ be the limit of $(x_n)$ and blah blah blah'' before ensuring that the sequence does converge since such a number may not exist.\\
+Limits do behave nicely.
+\begin{example}
+    1. If $x_n\le d$ always, and $x_n\to c$, then $c\le d$.
+    Indeed, if $c>d$, then we can take $\epsilon=c-d$, so $|c-x_n|=c-x_n=(c-d)+(d-x_n)\ge c-d=\epsilon$, contradiction.\\
+    2. If $x_n<d$ always, and $x_n\to c$, then we need not have $c<d$, since we can take for example $x_n=-1/n\to 0$ and $d=0$.
+\end{example}
+\begin{proposition}
+    If $x_n\to x$, $y_n\to y$, then $z_n=x_n+y_n\to x+y$.
+\end{proposition}
+\begin{proof}
+    $\forall\epsilon>0$, choose $N_1$ with $\forall n>N_1, |x_n-x|<\epsilon/2$ and $N_2$ with $\forall n>N_2, |y_n-y|<\epsilon/2$, then choose $N=\max\{N_1,N_2\}$, then $\forall n>N,|z_n-(x+y)|\le |x_n-x|+|y_n-y|<2\epsilon/2=\epsilon$, so $z_n\to x+y$.
+\end{proof}
+We say a sequence $x_1,x_2,\ldots$ is increasing if $x_n\le x_{n+1}$ for every $n\in\mathbb N$.
+It is called bounded above if $\{x_n:n\in\mathbb N\}$ is bounded above.
+\begin{theorem}
+    An incresing sequence that is bounded above is convergent.    
+\end{theorem}
+Note that this is false in $\mathbb Q$.
+\begin{proof}
+    Suppose $(x_n)$ is such a sequence.
+    We claim that it converges to $c=\sup\{x_n:n\in\mathbb N\}$.
+    For any $\epsilon>0$, $c-\epsilon$ cannot be an upper bound, so there is some $N\in\mathbb N$ such that $c\ge x_N>c-\epsilon$, then for any $n>N$, $c\ge x_n\ge x_N>c-\epsilon$, so $|c-x_n|<\epsilon$.
+\end{proof}
+\begin{remark}
+    1. It is equivalent to say that a decreasing sequence (i.e. $x_n\ge x_{n+1}$ for all $n\in\mathbb N$) bounded below is convergent.
+    So as a corollary, a bounded monotone sequence is convergent.\\
+    2. In series, the equivalent form would be that if the partial sums of the series is bounded above and all terms are nonnegative, then it converges by corollary just stated.
+\end{remark}
+There are a few applications of the theorem (and its corollaries).
+\begin{proposition}
+    $\sum_{n=1}^\infty n^{-1}$ diverges, and $\sum_{n=1}^\infty n^{-2}$ converges.
+\end{proposition}
+Note that as sequences, neither of the sums has a (nice) closed form.
+Our main idea would be doing comparisons with other series whose sums we are more familiar with.
+\begin{proof}
+    For the first part of the proposition, choose any partial sum
+    $$P=\sum_{n=1}^k n^{-1}$$
+    then consider the least $r$ such that $2^{r}>k$, so
+    $$\sum_{n=1}^{2^{r+1}} \frac{1}{n}\ge P+\sum_{n=2^r}^{2^{r+1}} \frac{1}{n}\ge P+\frac{2^{r}}{2^{r+1}}=P+\frac{1}{2}$$
+    So it is unbounded, hence does not converge.
+    For the second part,
+    $$\sum_{n=2^r}^{2^{r+1}-1} \frac{1}{n^2}\le \frac{2^r}{2^{2r}}=\frac{1}{2^r}\implies \sum_{n=1}^\infty\frac{1}{n^2}\le \sum_{r=0}^\infty\frac{1}{2^r}=2$$
+    So it is bounded, hence it converges.
+\end{proof}
+The last sum actually tends to $\pi^2/6$, the proof of this will be covered somewhere else.\\
+Secondly, decimal expansion.
+When we are thinking of $0.a_1a_2a_3\ldots$, how do we know the limit $0.a_1,0.a_1a_2,\ldots$ always exists?
+Obviously, we want to analyze the infinite sum
+$$\sum_{n=1}^\infty \frac{a_n}{10^n}$$
+This does converge, since
+$$\sum_{n=1}^\infty \frac{a_n}{10^n}\le \sum_{n=1}^\infty \frac{10}{10^n}<\sum_{k=0}^\infty\frac{1}{10^k}<2$$
+Conversely, given any real number $0<x<1$, we first choose $a_1\in\{0,1,\ldots,9\}$ such that $a_1/10\le x<(a_1+1)/10$, and when we have chosen $a_k$, we choose $a_{k+1}\in\{0,1,\ldots,9\}$ by choosing it to be such that
+$$\sum_{n=1}^k\frac{a_n}{10^n}+\frac{a_{k+1}}{10^{k+1}}\le x <\sum_{n=1}^k\frac{a_n}{10^n}+\frac{a_{k+1}+1}{10^{k+1}}$$
+such $a_{k+1}$ always exists due to the definitions of $a_1,a_2,\ldots,a_k$.
+\begin{remark}
+    1. The decimal (or binary or other bases) expansion of any rational number is periodic.
+    Conversely, a real number whose decimal (or binary or other bases) expansion is periodic is rational.\\
+    2. Decimal expansion may not be unique (in a way) since $0.500\ldots =0.499\ldots$, but this is kind of the only way that this would happen.
+\end{remark}
+\begin{definition}
+    We define $e$ to be $1+1/1!+1/2!+1/3!+1/4!+\cdots$
+\end{definition}
+\begin{proposition}
+    $e$ is well defined.
+\end{proposition}
+\begin{proof}
+    The partial sum is bounded since
+    $$\sum_{i=0}^\infty\frac{1}{i!}\le 1+\sum_{k=0}^\infty\frac{1}{2^k}=3$$
+    Also each term is positive, therefore the sequence of partial sums is increasing, hence it converges.
+\end{proof}
+\subsection{Transcendental Numbers}
+\begin{definition}
+    A real number $a$ is called algebraic if it is the root of some nonzero polynomial with integer coefficients.
+\end{definition}
+\begin{example}
+    1. Every rational number is algebraic.\\
+    2. $\sqrt[q]{p}+r$ is algebraic for any $p,q,r\in\mathbb Q$ (given that it is well-defined).
+\end{example}
+However, there can be real numbers that is not algebraic.
+To start with, we shall show that $e$ is irrational.
+\begin{proposition}
+    $e$ is irrational.
+\end{proposition}
+\begin{proof}
+    Suppose for the sake of contradiction that $e=p/q$ such that $p\in\mathbb Z,q\in\mathbb N$.
+    Obviously $q>1$.
+    So
+    $$\frac{p}{q}=1+\frac{1}{1!}+\frac{1}{2!}+\cdots\implies p(q-1)!=q!\left(\sum_{n=0}^q\frac{1}{n!}\right)+\sum_{n=q+1}^\infty\frac{q!}{n!}$$
+    Note that the first term in the right hand side is integral, but for the second term,
+    $$0<\sum_{n=q+1}^\infty\frac{q!}{n!}=\frac{1}{q+1}+\frac{1}{(q+1)(q+2)}+\cdots\le\sum_{k=1}^\infty\frac{1}{(q+1)^k}=\frac{1}{q}<1$$
+    Thus the right hand side is not an integer, but the left hand side is.
+    This is a contradiction.
+\end{proof}
+\begin{definition}
+    If a real number $x$ is not algebraic, we say it is transcendental.
+\end{definition}
+$e$ is actually transcendental, but we will not prove it here.
+However, we will give an example of a transcendental number.
+\begin{proposition}
+    Take
+    $$c=\sum_{k=1}^\infty \frac{1}{10^{k!}}$$
+    then $c$ is transcendental.
+\end{proposition}
+It is trivial that $c$ is well defined.
+We will need the following facts about polynomials.
+\begin{proposition}
+    1. For any polynomial $P$, we have some constant $K>0$ such that $|P(x)-P(y)|\le K|x-y|$ for each $x,y\in [0,1]$.\\
+    2. A polynomial of degree $d$ has at most $d$ roots.
+\end{proposition}
+\begin{proof}
+    1. Suppose $P(x)=\sum_{i=0}^da_ix^i$, then for $x,y\in[0,1]$,
+    $$|P(x)-P(y)|=\left|\sum_{i=1}^da_i(x^i-y^i)\right|\le d\sum_{i=1}^d|a_i||x-y|=K|x-y|,K=d\sum_{i=1}^d|a_i|$$
+    2. Polynomial division.
+\end{proof}
+Now we are ready for the proof.
+\begin{proof}[Proof that $c$ is transcendental]
+    Suppose for the sake of contradiction that there is some polynomial
+    $$P(x)=\sum_{k=0}^da_kx^k$$
+    such that $a_k\in\mathbb Z$ and $P(c)=0$.
+    Let
+    $$c_n=\sum_{k=1}^n \frac{1}{10^{k!}}$$
+    So $c_n\to c$.
+    Note that $|c_n-c|\le 2/10^{(n+1)!}$.
+    Since $P$ has at most $d$ roots, $\exists N\in\mathbb N,\forall n>N,P(c_n)\neq 0$.
+    As $P$ has integer coefficients, for $n>N$,
+    $$\frac{1}{10^{n!d}}\le|P(c_n)|=|P(c_n)-P(c)|\le K|c_n-c|\le\frac{2K}{10^{(n+1)!}}$$
+    by the preceding proposition.
+    This fails when $n$ is large, contradiction.
+\end{proof}
+\begin{definition}
+    We say $x\in\mathbb R\setminus\mathbb Q$ is a Liouville number if $\forall n\in\mathbb N,\exists p\in\mathbb Z,q\in\mathbb N,$
+    $$\left|x-\frac{p}{q}\right|<\frac{1}{q^n}$$
+    That is, $x$ has a very good rational approximations.
+\end{definition}
+\begin{theorem}
+    Every Liouville number is transcendental.
+\end{theorem}
+\begin{proof}
+    Similar as above.
+\end{proof}
+\begin{remark}
+    $e$ is not a Liouville number.
+\end{remark}

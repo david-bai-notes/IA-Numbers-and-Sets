@@ -1,0 +1,24 @@
+\section{The Complex Numbers}
+Some polynomials have no solution in $\mathbb R$, e.g. $x^2+1=0$.
+So we want so enlarge the reals to seek a solution.
+\begin{definition}
+    The complex numbers, written as $\mathbb C$, consists of $\mathbb R^2$ (ordered pairs of real numbers) with operations $+,\cdot$ defined by
+    $$(a,b)+(c,d)=(a+c,b+d)$$
+    $$(a,b)\cdot(c,d)=(ac-bd,ad+bc)$$
+\end{definition}
+The collection $\{(a,0):a\in\mathbb R\}$ can be identified as the reals.
+One can verify straight away that the sum and product reduced to the case that we are familiar with.
+We can write $i=(0,1)$, and we have $i^2=)=(-1,0)$, also every complex numbers are in the form $a+bi$ for $a,bin\mathbb R$.
+Indeed, $(a,b)=(a,0)+(b,0)\cdot (0,1)=a+bi$.
+\begin{remark}
+    We can check that the complex numbers satisfy the usual laws of arithmetic.
+    In particular, for each $z=a+bi\neq 0$, we know that $zw=1$ where $w=\bar z/(z\bar z)$ where $\bar z=a-bi$.
+    The complex number $\bar z$ is called the conjugate of $z$.
+    Such a structure is called a field.
+\end{remark}
+Examples of fields includes $\mathbb C,\mathbb R,\mathbb Q,\mathbb Z_p$ where $p$ is prime.
+But $\mathbb Z$ is not due to the lack of multiplicative inverses.
+\begin{theorem}[Fundamental Theorem of Algebra]
+    Every nonconstant polynomial with complex coefficient has a root in $\mathbb C$.
+\end{theorem}
+We will obviously not prove it here.

@@ -1,0 +1,102 @@
+\section{Introduction: Proofs and why we want them}
+Vaguely speaking, a proof is a kind of logical argument (or a series of it) which establishes a conclusion.
+This is not the most rigorous way to define it, but it would be enough for now.
+The big question, however, is why we need them.
+Why can't we just assume something that looks nice to be correct?
+Why can't we declare something to be right if it holds merely for the scope that we can reach?
+Of course, there is an answer.
+If not, mathematics would not have existed.
+\subsection{Why we need proofs}
+There are a few reasons why proofs are important and essential.
+The obvious one is that we need to be sure about the truthfulness of something.
+There are tonnes of example in mathematcis where a theorem holds for a shockingly large selection of numbers but not for all.
+We could, of course, give some silly examples like the claim ``all positive integers are less than $N$'' where you can substitute $N$ for some very large integer, but there is a more interesting example:
+\begin{example}[Polya's Conjecture]
+    For any positive integer $N>2$, at least half of the positive integers less than or equal to $N$ has an odd number of prime factors (counting multiplicity).
+\end{example}
+\begin{proof}[Disproof]
+    The smallest counterexample occurs at $N=906150257$.
+\end{proof}
+We do have computers now that can test some of our conjectures up to some very large numbers, but for mathematicians, most of those computational powers are useless,
+\footnote{There are some proofs that harness the power of computers, like the four-color theorem. But still -- it is the proof we need, not any sort of verification.}
+since they can do nothing about how the general picture is like.
+\subsection{Why we want proofs}
+We can need something that we don't want, like nuclear weapons.
+However, this is not the case for proofs.
+We need them, yes.
+But we still want them, desperately.
+Some say that the study of language is proofreading, then the study of mathematics would be proof-reading.
+What we really want is not only the however elegant results that we, or someone else, have proven.
+We should be more attracted to the (clever) idea behind.
+Why? Because if we come through another statement of similar kind, it would be in our advantage to solve them using the same technique.
+After all, mathematics is a creative art (of problem-solving).
+Quoting theorems won't get you anywhere in maths, what you really need is to empower yourself with the tricks in the proof.
+\subsection{Correct and incorrect proofs}
+First let us see how a correct proof is done:
+\begin{claim}
+    For any integer $n$, $n^3-n$ is a multiple of $3$.
+\end{claim}
+Note that when you state some variable, you need to state as well where its home is at.
+The statement would be false if $n$ is not restricted to integers.
+Now here comes the proof.
+\begin{proof}
+    $n^3-n=(n-1)n(n+1)$. Since one of any three consecutive integers is a multiple of $3$, one of $n-1,n,n+1$ is. So $n^3-n$ is a multiple of $3$.
+\end{proof}
+A proof almost always comes with a smart idea.
+The ``smart'' here doesn't necessarily mean that it is really smart, but a very important point that constitutes the basic of (part of) the proof.
+In this case, the smart idea is to try and factorize the expression to something that we can easily handle, which makes the problem quite obivous.\\
+Now here come a non-proof, or incorrect proof:
+\begin{claim}
+    Let $n$ be a integer. If $n^2$ is even, so is $n$.
+\end{claim}
+\begin{proof}[Non-proof]
+    If $n$ is even, then $n=2k$ for some integer $k$, so $n^2=4k^2=2(2k^2)$. Therefore $n^2$ is even.
+\end{proof}
+Is it factually wrong? No.
+The logic in the proof itself is impeccable.
+So both the statement and the proof logic is correct, what is wrong?
+Quite obviously, it has proved the wrong thing.
+We want something like $A\implies B$, but what has been proven is $B\implies A$.
+So even both the statement and the proof logic are alright, it might still not be a proof.
+(Needless to say, if either of these two things is not, it would not be a proof either.)
+So back on the track.
+\begin{proof}
+    If $n^2$ even but $n$ is not, then $n=2k+1$ for some integer $k$, so $n^2=4k^2+4k+1=2(2k^2+2k)+1$ which is odd. This is a contradiction.
+\end{proof}
+This is a new way of proof. We do not take $A\implies B$ directly, but we use $\lnot B\implies\lnot A$.
+The equivalence of these two is called \textit{reducio ad absurdum}, and the trick to use this in the proof is called a \textit{proof by contradiction}.
+\subsection{``iff''}
+We want to prove the following claim:
+\begin{claim}
+    The solutions to $x^2-5x+6$ are $x=2$ and $x=3$.
+\end{claim}
+Note that this claim is actually two claims: that $2,3$ are indeed solutions to the equation, and that the equation does not have any other solutions.
+Therefore, to rephrase the question, we want to prove that $x^2-5x+6=0$ \textit{if and only if} $x=2$ or $x=3$.
+Here, \textit{if and only if} means, well, what it literally means, that the two statements are equivalent to each other.
+They are interchangable and any one of them implies the other.
+So our proof must consist of both the forward and backward implication.
+Otherwise, it would be incomplete.
+One way of doing it is to seperately prove both sides of the claim, but we can also use a chain of "iff"s:
+\begin{proof}
+    $x^2-5x+6=0\iff (x-2)(x-3)=0\iff (x=2\lor x=3)$
+\end{proof}
+However, if such a proof is to be used, one must make sure that the adjascent statements are indeed equivalent to each other.
+\subsection{Implicit use of assumption}
+The final proof error that we state here would be that sometimes we use an inappropriate assumption in the proof which make it invalid.
+Consider the following claim:
+\begin{claim}
+    $1$ is the smallest positive real number.
+\end{claim}
+\begin{proof}[Nonsense]
+    Let $r$ be the smallest positive real number.
+    If $r<1$, then $r^2<r$, contradiction.
+    If $r>1$, then $\sqrt r<r$, contradiction.
+    Therefore $r=1$
+\end{proof}
+Why is this nonsense a nonsense?
+Because the proof (and the claim) both used a wrong assumption that there exists a smallest positive real number.
+But there isn't.
+Actually, the above proof and the fact that $1/2<1$ provides a proof of this fact.\\
+So in proofs, we cannot assume, and need to avoid assuming implicitly, anything that might not be correct.
+If you get to assume something, prove it first.\\
+Now that we are done with proofs, here comes the genuine stuff.

@@ -1,0 +1,316 @@
+\section{Sets and Functions}
+\subsection{Naive Set Theory}
+\begin{definition}[Naive definition of sets]
+    A set is any
+    \footnote{Not quite, see later.}
+    collection of (mathematical) objects.
+\end{definition}
+\begin{example}
+    $\mathbb N,\mathbb Q,\mathbb R,\mathbb C,\mathbb Z,[0,1],\{1,2,3\},\ldots$
+\end{example}
+A set is determined by its members: $(a\in A\iff a\in B)\iff(A=B)$.
+Hence, the set is not ordered per se: $\{1,3,7\}=\{7,1,3\},\{1,3,3,7\}=\{1,3,7\}$.
+From the second example, we also know that there is no multiple membership.\\
+Of course, we would want to make new sets from old.
+\begin{definition}
+    A set $A$ is a subset of another set $B$ iff $x\in A\implies x\in B$.
+    We write it as $A\subset B$ or $A\subseteq B$.
+\end{definition}
+So $A=B$ is equivalent to $A\subset B$ and $B\subset A$.
+\begin{example}
+    $\{1,7\}\subset \{1,3,7\}\subset\mathbb N\subset\mathbb Z\subset \mathbb Q\subset\ldots, [0,1]\subset\mathbb R$.
+\end{example}
+\begin{definition}
+    Given a set $A$ and a property $P$ on $A$, we can form the set of all elements in $A$ having property $P$, $\{x\in A:P(x)\}$
+\end{definition}
+\begin{example}
+    We can construct the primes by $\{n\in\mathbb N:\text{$n$ is prime}\}$.
+\end{example}
+\begin{definition}
+    Given sets $A,B,U$ such that $A,B\subset U$, we can construct their union by
+    $$A\cup B=\{x\in U:x\in A\lor x\in B\}$$
+    and intersection by
+    $$A\cap B=\{x\in U:x\in A\land x\in B\}$$
+    We say $A,B$ are disjoint if $A\cap B=\varnothing$.\\
+    We also have the minus action
+    $$A\setminus B=\{x\in A:x\notin B\}$$
+\end{definition}
+We can view $A\cap B$ as a subset selection, since $A\cap B=\{x\in A:x\in B\}$.
+Unions and intersections are commutative and associatives.
+Also, the union is distributive over the intersection: $A\cup (B\cap C)=(A\cup B)\cap (A\cup C)$.
+The intersection is distributive over the union as well: $A\cap (B\cup C)=(A\cap B)\cup (A\cap C)$.
+One can easily check them.\\
+We can also have arbitrary unions and intersections.
+\begin{definition}
+    For $A_i\subset U$ where $i\in I$ for some index set $I$, the union of all $A_i$'s can be defined by
+    $$\bigcup_{i\in I}A_i=\{x\in U:\exists i\in I,x\in A_i\}$$
+    the intersection by
+    $$\bigcap_{i\in I}A_i=\{x\in U:\forall i\in I,x\in A_i\}$$
+\end{definition}
+It coincides with our previous definition in the finite case due to the associativity and commutativity of unions and intersections.
+\begin{definition}
+    In $\mathbb R$, let $A_n=[1-1/n,1+1/n],n\in\mathbb N$, so $\bigcup_{n\in\mathbb N}A_n=[0,2],\bigcap_{n\in N}A_n=\{1\}$, note that there is no limiting operation going on here.\\
+    Let let $A_n=(1-1/n,1+1/n),n\in\mathbb N$, so $\bigcup_{n\in\mathbb N}A_n=(0,2),\bigcap_{n\in N}A_n=\{1\}$
+\end{definition}
+
+\begin{definition}
+    Given two objects $a,b$, you can form the ordered pair $(a,b)$,
+    And that $(a,b)=(c,d)$ iff $a=c,b=d$.
+    For sets $A,B$, one can form the collection $A\times B=\{(a,b):a\in A,b\in B\}$, which is called the product, or Cartesian product of $A,B$.
+\end{definition}
+\begin{example}
+    The plane $\mathbb R^2$ can be viewed as $\mathbb R\times\mathbb R$.
+\end{example}
+Similarly, we can construct things like $\mathbb R^n$ by recognising the collection of all ordered $n$-tuples.\\
+Note that if we wish to do it, we could define $(a,b)$ by the set $\{\{a\},\{a,b\}\}$.
+One can check that $(a,b)=(c,d)\iff a=c,b=d$ under this notion.
+\footnote{Quoting the lecturer, ``You're completely nuts if you really think of this in that way'}
+\begin{definition}
+    For any set $A$, we can form the power set of $A$, written as $\mathbb P(A)$ or $2^A$,
+    \footnote{Different from the lecturer, the author of this set of notes prefers the latter notation.}
+    which is set of all subsets of $A$.
+\end{definition}
+\begin{example}
+    Let $X=\{1,2\}$, then $2^X=\{\varnothing, \{1\},\{2\},\{1,2\}\}$.
+\end{example}
+\begin{remark}
+    Warning: Given a set $A$, we know we can form $\{x\in A:P(x)\}$, but you should not form $\{x:P(x)\}$.
+    Suppose we could form $X=\{x:x\notin x\}$, then do we have $X\in X$?
+    Indeed, this gives a contradiction.\\
+    This is called the Russel's Paradox.
+\end{remark}
+Similarly, there is not an universal set $U$ such that $\forall x,x\in V$, because it would induce the Russel's Paradox.
+We can only guarantee that a given set exists if it is obtained, in some way, from known sets.
+\subsection{Finite Sets and Their Sizes}
+\begin{definition}
+    A set $A$ has size $n$ where $n\in\mathbb N_0$ if we can write $A=\{a_1,a_2,\ldots,a_n\}$ such that $a_i$'s are distinct.
+\end{definition}
+\begin{example}
+    1. $\{1,3,7\}$ has size $3$.\\
+    2. $\varnothing$ has size $0$.
+\end{example}
+\begin{proposition}
+    If a set has size $n$ and size $m$, then $m=n$.
+\end{proposition}
+\begin{proof}
+    It's trivial but whatever.\\
+    Indeed, if $A$ has size $n$ and size $m$ with $n>m$, then if $m=0$ it is trivial, otherwise, removing an element from $A$ gives a set of sizes $n-1,m-1$, so it is done by induction on $m$.
+\end{proof}
+\begin{proposition}\label{2power}
+    If $A$ has size $n$, then $2^A$ has size $2^n$.
+\end{proposition}
+It is obvious when $n=0$, so we assume henceforth it is not.
+\begin{proof}
+    We can relabel the element in $A$ by $\{1,2,\ldots,n\}$.
+    So to specify a subset $S$, we must specify if $1\in S$, $2\in S$, and so on, so the size of $2^A$ is $2\times 2\times 2\times\cdots\times 2$ $n$ times, which is $2^n$.
+\end{proof}
+\begin{proof}[Alternative proof]
+    Induction on $n$.
+\end{proof}
+The alternative proof can be viewed as a more formal version of the first proof.\\
+We are tired of saying ``the size of blah blah blah'' so we write $|A|$ to denote the size of $A$.\\
+A set of size $n$ is sometimes called an $n$-set.
+\begin{definition}[Binomial Coefficients]
+    Let $A=\{1,2,\ldots,n\}$ for $n\ge 1$, then the binomial coefficient is defined as
+    $$\binom{n}{k}=\{S\subset A:|S|=k\}$$
+    is the number of ways to choose a $k$-set from an $n$-set.
+\end{definition}
+\begin{example}
+    $$\binom{4}{2}=6$$
+    by listing.
+\end{example}
+We always have $\binom{n}{n}=\binom{n}{0}=1,\binom{n}{1}=n$ and $\binom{n}{k}=\binom{n}{n-k}$.
+Also, by Proposition \ref{2power}, we instantly have
+$$\binom{n}{0}+\binom{n}{1}+\cdots+\binom{n}{n}=2^n$$
+In addition,
+$$\binom{n}{k}=\binom{n-1}{k-1}+\binom{n-1}{k}$$
+since both size counted the number of $k$-sets in an $n$-set, that is, the number of $k$-sets which include some specified element and the number of $k$ sets which do not include.
+Hence we have the Pascal's triangle.
+\begin{proposition}
+    $$\binom{n}{k}=\frac{n(n-1)(n-2)\cdots (n-k+1)}{k!}$$
+\end{proposition}
+\begin{proof}
+    We first count the number of ordered $k$-sets is $n(n-1)(n-2)\cdots (n-k+1)$.
+    But here we have overcounted each $k$-sets by $k(k-1)(k-2)\cdots 1=k!$, therefore the formula.
+\end{proof}
+\begin{corollary}
+    When $n$ is big, $\binom{n}{k}\sim n^k/k!$.
+\end{corollary}
+An appplication of the binomial coefficient is the binomial theorem.
+\begin{theorem}[Binomial Theorem]
+    $$(a+b)^n=\sum_{k=0}^n\binom{n}{k}a^{n-k}b^k$$
+\end{theorem}
+\begin{proof}
+    When we expand $(a+b)^n=(a+b)(a+b)\cdots (a+b)$ where there are altogether $n$ brackets, we obtain terms of the form $a^{n-k}b^{k}$ where $0\le k\le n$.
+    But the number of terms that we get in each is the number of ways to choose $k$ (or equivalently, $n-k$) brackets from the $n$ brackets, so it is $\binom{n}{k}$, thus the theorem.
+\end{proof}
+In particular, $(1+x)^n=1+nx+\binom{n}{2}x^2+\cdots +x^n$, hence for given $n$, $(1+x)^n\sim 1+nx$ when $x$ is small, and we can get better approximations when we take more term(s).\\
+Now, how do sizes of unions and intersections (for finite sets) relate to each other?
+\begin{example}
+    We have $|A\cup B|=|A|+|B|-|A\cap B|$, and $|A\cup B\cup C|=|A|+|B|+|C|-|A\cap B|-|B\cap C|-|C\cap A|+|A\cap B\cap C|$.
+\end{example}
+\begin{theorem}[Inclusion/Exclusion Principle]
+    For finite sets $(S_i)_{i=1}^n$, $|S_1\cup S_2\cup\cdots\cup S_n|$ equals
+    $$\sum_i|S_i|-\sum_{i<j}|S_{ij}|+\sum_{i<j<k}|S_{ijk}|-\cdots+(-1)^{n+1}\sum_{i_1<i_2<\ldots <i_n}S_{i_1i_2\ldots i_n}$$
+    Where $S_{k_1k_2\ldots k_r}=S_{k_1}\cap S_{k_2}\cap \cdots\cap S_{k_r}$
+\end{theorem}
+\begin{proof}
+    Consider $x\in |S_1\cup S_2\cup\cdots\cup S_n|$, suppose we can choose the maximal $k$ such that there is a $k$-set $A$ contained in $\{1,2,\ldots, n\}$ such that $x\in S_a$ for each $a\in A$.
+    Then, the number of times that $x$ is counted is
+    $$k-\binom{k}{2}+\binom{k}{3}-\cdots+(-1)^{k+1}\binom{k}{k}=1-(1-1)^k=1$$
+    by Binomial Theorem.
+    So each element is counted exactly once, hence the theorem is proved.
+\end{proof}
+\subsection{Functions}
+\begin{definition}[Intuitive Definition of Functions]
+    For sets $A,B$, a function $f:A\to B$ is a ``rule'' that assigns each element $a$ in $A$ exactly one element, called $f(a)$ in $B$.
+\end{definition}
+\begin{definition}[Rigourous Definition of Functions]
+    A function $f:A\to B$ is a set $f\subset A\times B$ such that if $(a,b),(a,c)\in f$ for $a\in A$ and $b,c\in B$, then $b=c$ (equivalently $(a,b)=(a,c)$).
+    In other words, $\forall a\in A,\exists!b\in B,(a,b)\in f$.
+    We write $f(a)=b$.
+\end{definition}
+$A$ is called the domain of $f$ and $B$ is called the range (or codomain) of $f$.
+The set $\{f(a):a\in A\}$ is called the image of $f$.
+\begin{example}
+    1. We can have a function $f:\mathbb R\to\mathbb R$ given by $f(x)=x^2$.\\
+    2. (non-example) But $f:\mathbb R\to\mathbb R$ by $f(x)=1/x$ is not a function since it does not have value at $0$.\\
+    3. (non-example) The function $f:\mathbb R\to\mathbb R$ by $f(x)=\pm\sqrt{x^2}$ is not a function due to multiple value.\\
+    4. $A=\{1,2,3,4,5\},B=\{1,2,3,4\}$ and $f:A\to B$ by $1\mapsto 1,2\mapsto 3,3\mapsto 4,4\mapsto 3,5\mapsto 5$ is a function.\\
+    5. $A=B=\{1,2,3\}$ and $f:A\to B$ by $1\mapsto 2,2\mapsto 1,3\mapsto 3$ is a function.\\
+    6. $A=B=\{1,2,3,4\}$ and $f:A\to B$ by $1\mapsto 1,2\mapsto 2,3\mapsto 4,4\mapsto 4$.\\
+    7. $A=\{1,2,3,4,5\}, B=\{1,2,3,4\}$ and $f:A\to B$ by $1\mapsto 2,2\mapsto 1,3\mapsto 3,4\mapsto 4,5\mapsto 4$.
+\end{example}
+Note that it can be ambiguous if we just say $f(x)=x^2$ since we may not know about the domain (and range).
+We can only define a function with knowing about the domain and the range.
+Note also that we do not have to have a ``closed form'' of a function, which is frankly ridiculous to do so.
+\begin{definition}
+    A function $f:A\to B$ is called injective if $\forall x,y\in A,x\neq y\implies f(x)\neq f(y)$, or equivalently, $\forall x,y\in A,f(x)=f(y)\implies x=y$.\\
+    It is called surjective if $\forall b\in B,\exists a\in A,f(a)=b$, or equivalently, $B$ is the image of $f$.
+\end{definition}
+One can easily classify the above examples by injective/non-injective and surjective/non-surjective.
+\begin{definition}
+    If a function $f$ is both injective and surjective, we say it is bijective, or that it is a bijection.
+\end{definition}
+Note that a bijection pair up elements in $A$ and $B$.
+It is also called a 1-1 correspondence.
+Example 5 above is an example of a bijection.
+Note that injectivity and surjectivity depend strongly on the domain and range of the function.
+\begin{remark}
+    If $A,B$ are finite and $f:A\to B$.
+    If $|A|>|B|$, $f$ cannot be injective.
+    If $|A|<|B|$, $f$ cannot be surjective.\\
+    If $|A|=|B|$, then surjectivity, injectivity and bijectivity are equivalent.
+    Thus any $f:A\to A$ cannot biject $A$ to a proper subset $A'\subsetneq A$.
+    But this is not necessarily true for infinite (i.e. not finite) sets, for example, the ``adding-$1$'' function is a bijection $\mathbb N\to\mathbb N\setminus\{1\}$ (assuming $\mathbb N$ starts with $1$), this also shows that injectivity does not imply surjective.
+    Also the function $\mathbb N\to\mathbb N$ by $1\mapsto 1$ and $n\mapsto n-1$ for $n\ge 2$ is surjective but not injective.
+\end{remark}
+We have more examples of functions.
+\begin{example}
+    1. For any set $A$, we have the identity function $A\to A$ which sends each element to itself
+    It is a bijection.\\
+    2. Given a set $X$ and a subset $A\subset X$, the function $\chi_A:X\to\{0,1\}$ by $\chi_A(x)=1$ if $x\in S$ and $\chi_A(x)=0$ otherwise is a function.
+    This is called the indicator (or characteristic) function of $A$.\\
+    3. A sequence on a set $X$ is a function $\mathbb N\to X$.\\
+    4. The addition and multiplication, say on $\mathbb N$, are functions $\mathbb N\times\mathbb N\to\mathbb N$.\\
+    5. A finite set $A$ has set $m$ if and only if there is a bijection $\{1,2,3,\ldots,m\}\to A$.
+\end{example}
+\begin{definition}
+    Let $f:A\to B,g:B\to C$, then the composition $g\circ f$ is a function $A\to C$ defined by $(g\circ f)(a)=g(f(a))$.
+\end{definition}
+Note that function compositions are not necessarily commutative (if $A=C$).
+\begin{example}
+    If $A=B=C=\mathbb R$ and $f: x\mapsto 2x,g: x\mapsto x+1$, then $f\circ g: x\mapsto 2x+2,g\circ f:x\mapsto 2x+1$, which are indeed different.
+\end{example}
+However, function compositions are associative.
+\begin{proposition}
+    If $f:A\to B,g:B\to C,h:C\to D$, then $h\circ (g\circ f)=(h\circ g)\circ f$.
+\end{proposition}
+\begin{proof}
+    $\forall x\in A, (h\circ (g\circ f))(x)=h(g(f(x)))=((h\circ g)\circ f)(x)$.
+\end{proof}
+\begin{definition}
+    $f:A\to B$ is invertible if and only if there is some other function $g:B\to A$ such that $f\circ g=\operatorname{id}_B,g\circ f=\operatorname{id}_{A}$.
+    We say $g$ is the inverse of $f$.
+    Note that $g$ is invertible as well with inverse $f$.
+\end{definition}
+\begin{example}
+    Consider $f:\mathbb R\to\mathbb R$ by $f(x)=2x+1$, consider $g:\mathbb R\to\mathbb R$ by $g(x)=(x-1)/2$, then $\forall x\in\mathbb R,(f\circ g)(x)=(g\circ f)(x)=x$, thus $f$ is invertible and $g$ is the inverse of $f$.
+\end{example}
+\begin{remark}
+    Note that we have to check both sides.
+    Consider $f_0:\mathbb N\to\mathbb N$ by $f_0(x)=x+1$ and $f_1:\mathbb N\to\mathbb N$ by $f_1(x)=x-1$ for $x>1$ and $f_1(1)=1$, then $f_1\circ f_0=\operatorname{id}_{\mathbb N}$ but $f_0\circ f_1\neq\operatorname{id}_{\mathbb N}$.
+\end{remark}
+\begin{proposition}
+    A function is invertible if and only if it is a bijection.
+\end{proposition}
+\begin{proof}
+    Trivial.
+\end{proof}
+\subsection{Equivalence Relations}
+\begin{definition}
+    Let $A$ be a set, then a relation $R$ is a subset of $A\times A$.
+    We say $x,y\in A$ are related, or $xRy$, if $(x,y)\in R$.
+\end{definition}
+\begin{example}
+    1. On $\mathbb N$, the relation $aRb\iff a\equiv b\pmod{7}$ is a relation.\\
+    2. On $\mathbb N$, $aRb\iff a|b$ is a relation.\\
+    3. On any set, $aRb\iff a\neq b$ is a relation.\\
+    4. On $\mathbb N$, $aRb\iff a=b\pm 1$.\\
+    5. On $\mathbb N$, $aRb\iff |a-b|\le 2$.\\
+    6. On $\mathbb N$, $aRb\iff (a,b<5\lor a,b\ge 5)$.
+\end{example}
+\begin{definition}
+    A relation $R$ is reflexive iff $\forall x\in A, xRx$.
+\end{definition}
+The first, second, fifth and sixth examples above are reflexive relations.
+\begin{definition}
+    A relation $R$ is symmetric iff $\forall x,y\in A, xRy\implies yRx$
+\end{definition}
+The first, third, fourth, fifth and sixth examples above are symmetric relations.
+\begin{definition}
+    A relation $R$ is transitive iff $\forall x,y,z\in A, (xRy\land yRz)\implies xRz$
+\end{definition}
+The first, second and sixth exampels above are transitive relations.
+\begin{definition}
+    We say $R$ is an equivalence relation if it is reflexive, symmetric and transitive.
+\end{definition}
+The first and sixth relations above are equivalence relations.
+\begin{example}\label{partition}
+    Let $X$ be a set, then consider a partition $\{C_i\}_{i\in I}$ of $X$.
+    That is, $C_i\neq \varnothing$, $i\neq j\implies C_i\cap C_j=\varnothing$ and $X=\bigcup_{i\in I}C_i$.
+    Then $xRy\iff \exists i\in I, x,y\in C_i$ is a equivalence relation.
+\end{example}
+\begin{proposition}\label{eq_class}
+    All equivalence relations on $X$ can be written in the form of Example \ref{partition}.
+\end{proposition}
+\begin{definition}
+    For an equivalence relation $R$ on a set $X$ and $x\in X$, the equivalence class containing $x$, written as $C_x$ or $[x]$, is $\{y\in X:xRy\}=\{y\in X:yRx\}$.
+\end{definition}
+\begin{example}
+    In the first example, $[2]=6+7\mathbb Z=[16]=[23]=\ldots$.
+    Note that we have $7$ equivalence classes in total, namely $i+7\mathbb Z,i\in\{0,1,2,3,4,5,6\}$.
+\end{example}
+\begin{proof}[Proof of Proposition \ref{eq_class}]
+    let $X$ be the set with the equivalence relation $R$.
+    We shall show that the equivalence classes partitions $X$.
+    Note that $x\in [x]$, so their union is $X$, so it remains to show that different equivalence classes are disjoint.
+    If $y\in [x]$ and $y\in [z]$, then for any $w\in [x]$, we know $wRx,xRy$, so $wRy$, but $yRz$, so $wRz$, therefore $w\in [z]$, hence $[x]\subset [z]$.
+    Similarly $[z]\subset [x]\implies [x]=[z]$.
+\end{proof}
+Hence equivalence relation is just a partition of the set.
+\begin{definition}
+    The collection $X/R=\{[x]:x\in X\}$ is called the quotient of $X$ with respect to an equivalence relation $R$.
+\end{definition}
+\begin{example}
+    1. $xRy\iff x\equiv y\pmod{7}$ is an equivalence relation on $\mathbb Z$.
+    It gives the quotient $\mathbb Z/R=\{i+7\mathbb Z:i\in \{0,1,2,3,4,5,6\}\}$.\\
+    2. $(a,b)R(c,d)\iff ad=bc$ is an equivalence relation on $\mathbb Z\times\mathbb N$.
+    So we could construct $\mathbb Q$ by $\mathbb Q=(\mathbb Z\times\mathbb N)/R$.
+    The equivalence classes are like, for example, $[(1,2)]=\{(1,2),(2,4),(4,8),\ldots\}$.
+    In that way we can recognize $a/b=[(a,b)]$.
+\end{example}
+\begin{definition}
+    The quotient map (or projection map) $q:X\to X/R$ is defined by $q(x)=[x]$.
+\end{definition}
+This is well-defined since equivalence classes partitions the set $X$.

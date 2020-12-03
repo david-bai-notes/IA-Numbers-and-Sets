@@ -1,0 +1,59 @@
+\section{The Peano Axioms}
+We know what the natural numbers are, or do we?
+In school, we were often told a rather vague idea of the notion of natural numbers.
+We know that they are $1,2,3,\ldots$, but what actually are they?
+As every mathematical discipline, we do not know what is it until we define it using axioms.
+In the case of natural numbers, this is done by the Peano axioms:
+\begin{definition}
+    Natural numbers is a triple $(\mathbb N, 1, +1)$, where $\mathbb N$ is a set, $1\in\mathbb N$ its element, and $+1:\mathbb N\to\mathbb N$ an operation on $\mathbb N$.
+    It satisfies the following axioms:\\
+    1. For any $n\in\mathbb N$, $n+1\neq 1$.\\
+    2. For $n,m\in\mathbb N$, if $n\neq m$, then $n+1\neq m+1$.\\
+    3. Let $P$ be a proposition on $\mathbb N$. If $P(1)$ is true and $P(n)\implies P(n+1)$ for all $n\in\mathbb N$, then $P(n)$ is true for all $n\in\mathbb N$.
+\end{definition}
+\begin{definition}[Addition]
+    We define the operation $+k$ inductively by $n+(k+1)=(n+k)+1$.
+\end{definition}
+\begin{proposition}
+    The operation $+k$ is defined for all natural number $k$.
+\end{proposition}
+\begin{proof}
+    Induction.
+\end{proof}
+Similarly, using induction, we can define multiplication, exponentiation and order ($a<b\iff\exists k\in\mathbb N, a+k=b$) in the obvious way.
+\begin{proposition}
+    1. $(a+b)+c=a+(b+c)$.\\
+    2. $a+b=b+a$.\\
+    3. $(ab)c=a(bc)$.\\
+    4. $ab=ba$.\\
+    5. $a(b+c)=ab+ac$.\\
+    6. $a<b\land b<c\implies a<c$.\\
+    7. $\lnot(a<a)$.
+\end{proposition}
+\begin{proof}
+    Induction. Induction. Induction. Induction. Induction. Induction. Induction.
+\end{proof}
+There is a more useful form of induction.
+Induction says that if we have some proposition $P$ such that $P(1)$ is true and $P(n)\implies P(n+1)$, then $P(n)$ is true.
+But in fact, we can have a ``stronger'' induction hypothesis.
+\begin{theorem}[Strong induction]
+    Suppose that $P$ is a proposition on $\mathbb N$.
+    If $P(1)$ is true and for any $n\in\mathbb N$,
+    $$\forall k\le n, P(k)\implies P(n+1)$$
+    Then $P(n)$ is true for any $n\in\mathbb N$.
+\end{theorem}
+\begin{proof}
+    Apply our usual induction on the proposition $Q(n)$ meaning
+    $\forall k\le n, P(k)$
+\end{proof}
+Technically, we do not need to check the base case.
+But it is often safer to check it.
+If we want to use strong induction on $P$, we can prove $P(n)$ assuming the case for smaller numbers, as induction says if it would help to assume $P(m)$ for some $m<n$, feel free to do so.
+There are a few equivalent forms of strong induction which can be pretty useful.
+\begin{corollary}
+    If some $n$ has $P(n)$ false, then there exists an $n$ with $P(n)$ false but $P(m)$ true for every $m<n$.
+\end{corollary}
+That is, if there is a counterexample, then there is a minimal counterexample.
+\begin{corollary}[Well-ordering Principle]
+    If some $n$ has $P(n)$ true, then there exists a minimal $n$ with $P(n)$ true.
+\end{corollary}
